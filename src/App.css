@@ -1,8 +1,4 @@
 html { 
-  background: url("./img/bg.jpg") no-repeat center center fixed; 
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
   background-size: cover;
   height: auto;
   width: 100%;
@@ -10,6 +6,11 @@ html {
 
 .login {
   position: absolute;
+  background: url("./img/bg.jpg") no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
   width: 100%;
   height: 100%;
 }
@@ -100,7 +101,8 @@ html {
 }
 
 .login--signin {
-  color: rgba(255, 255, 255, 0.87);
+  border-radius: 0 !important;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 4px 10px 0 rgba(0, 0, 0, 0.1);
 }
 
 .login--signin:hover {

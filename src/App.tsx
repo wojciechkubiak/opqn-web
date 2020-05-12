@@ -3,24 +3,33 @@ import { useHistory, BrowserRouter as Router, Route, NavLink } from "react-route
 import Login from './containers/Login';
 import './App.css';
 
+
 const App: React.FC = () => {
   const [loggedIn, setLoggedIn] = useState(false);
+  const [mode, setMode] = useState(false);
 
   const history = useHistory();
   const log = localStorage.getItem("token") ? true : false;
 
   const routeToMainSite = () => history.push('/');
 
+  const modeHandler = () => {
+    setMode(!mode);
+  }
+
+  const logHandler = () => {
+    setLoggedIn(true);
+  }
 
   return (
     <div className="App">
       {
       !loggedIn && (
-        <Login/>
+        <Login mode={mode} handler={modeHandler} logHandler={logHandler}/>
       )
     }
       <Route path="/login">
-        <Login/>
+        <Login mode={mode} handler={modeHandler} logHandler={logHandler}/>
       </Route>
     </div>
   );

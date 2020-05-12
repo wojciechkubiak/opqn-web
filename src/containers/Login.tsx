@@ -1,19 +1,25 @@
-import React, { useState, useMemo, MouseEvent } from "react";
+import React, { useState, useMemo, useEffect, MouseEvent } from "react";
 import { Button, Form, Spinner } from "react-bootstrap";
 import BootstrapSwitchButton from "bootstrap-switch-button-react";
 
 import "../App.css";
 
-const Login: React.FC = () => {
+interface Props {
+    mode: boolean,
+    handler(): void,
+    logHandler(): void;
+}
+
+const Login = (props: Props) => {
   const [logIn, setLogIn] = useState(false);
   const [mail, setMail] = useState("");
   const [password, setPassword] = useState("");
-  const [mode, setMode] = useState(false);
+  let urlPart = props.mode ? "protege" : "patron";
 
   const login = (event: MouseEvent): void => {
     event.preventDefault();
     setLogIn(true);
-    let urlPart = mode ? "protege" : "patron";
+    
     console.log(urlPart);
     fetch(`https://opqn-api.herokuapp.com/login-${urlPart}`, {
       method: "POST",
@@ -27,6 +33,7 @@ const Login: React.FC = () => {
         if (data.token) {
           localStorage.setItem("token", data.token);
           setLogIn(false);
+          props.logHandler();
         } else {
           alert("Wprowadzono błędne dane. Spróbuj ponownie.");
           setLogIn(false);
@@ -36,6 +43,11 @@ const Login: React.FC = () => {
         console.error("Error", error);
       });
   };
+
+  useEffect(() => {
+      console.log(props.mode);
+      console.log(urlPart);
+  }, [props.mode])
 
   const data = useMemo(
     (): object => ({
@@ -51,15 +63,14 @@ const Login: React.FC = () => {
       <Form className="login--form">
         <Form.Group className="login--form-switch">
         <BootstrapSwitchButton
-          checked={mode}
+          checked={props.mode}
           size="lg"
           onlabel="PODOPIECZNY"
           offlabel="OPIEKUN"
           onstyle="success"
           width={200} 
-          onChange={(checked: boolean) => {
-            setMode(checked);
-          }}
+          onChange={() => props.handler()
+          }
         />
         </Form.Group>
         <Form.Group className="login--form-group">
@@ -107,7 +118,7 @@ const Login: React.FC = () => {
       <p className="login--paragraph">
         Nie masz jeszcze konta?{" "}
         <span>
-          <strong className="login--signin">Stwórz</strong>
+          <Button variant="success" className="login--signin">Stwórz</Button>
         </span>
       </p>
     </div>
