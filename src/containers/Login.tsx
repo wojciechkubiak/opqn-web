@@ -3,7 +3,7 @@ import { Button, Form, Spinner } from "react-bootstrap";
 import BootstrapSwitchButton from "bootstrap-switch-button-react";
 import { AiOutlineFork, AiOutlineForm } from "react-icons/ai";
 
-import "../App.css";
+import "../App.scss";
 
 interface Props {
   mode: boolean;

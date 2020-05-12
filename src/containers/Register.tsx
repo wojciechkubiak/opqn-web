@@ -3,7 +3,7 @@ import { Button, Form, Spinner } from "react-bootstrap";
 import {
     useHistory,
   } from "react-router-dom";
-import "../App.css";
+import "../App.scss";
 
 interface Props {
   mode: string;

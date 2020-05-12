@@ -7,7 +7,7 @@ import {
 } from "react-router-dom";
 import Login from "./containers/Login";
 import Register from "./containers/Register";
-import "./App.css";
+import "./App.scss";
 
 const App: React.FC = () => {
   const [loggedIn, setLoggedIn] = useState(false);
