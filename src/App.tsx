@@ -7,6 +7,7 @@ import './App.css';
 const App: React.FC = () => {
   const [loggedIn, setLoggedIn] = useState(false);
   const [mode, setMode] = useState(false);
+  const [showRegister, setShowRegister] = useState(false);
 
   const history = useHistory();
   const log = localStorage.getItem("token") ? true : false;
@@ -17,6 +18,10 @@ const App: React.FC = () => {
     setMode(!mode);
   }
 
+  const regShowHandler = () => {
+    setShowRegister(!showRegister);
+  }
+
   const logHandler = () => {
     setLoggedIn(true);
   }
@@ -25,11 +30,16 @@ const App: React.FC = () => {
     <div className="App">
       {
       !loggedIn && (
-        <Login mode={mode} handler={modeHandler} logHandler={logHandler}/>
+        <Login mode={mode} reg={regShowHandler} handler={modeHandler} logHandler={logHandler}/>
       )
     }
+    {showRegister && (
+      <div className="register">
+        <h1>Siemka</h1>
+      </div>
+    )}
       <Route path="/login">
-        <Login mode={mode} handler={modeHandler} logHandler={logHandler}/>
+        <Login mode={mode} reg={regShowHandler} handler={modeHandler} logHandler={logHandler}/>
       </Route>
     </div>
   );

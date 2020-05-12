@@ -1,6 +1,7 @@
 import React, { useState, useMemo, useEffect, MouseEvent } from "react";
 import { Button, Form, Spinner } from "react-bootstrap";
 import BootstrapSwitchButton from "bootstrap-switch-button-react";
+import {AiOutlineFork, AiOutlineForm} from "react-icons/ai";
 
 import "../App.css";
 
@@ -8,13 +9,16 @@ interface Props {
     mode: boolean,
     handler(): void,
     logHandler(): void;
+    reg(): void;
 }
 
 const Login = (props: Props) => {
   const [logIn, setLogIn] = useState(false);
   const [mail, setMail] = useState("");
   const [password, setPassword] = useState("");
-  let urlPart = props.mode ? "protege" : "patron";
+  const [showOptions, setShowOptions] = useState(false);
+  let urlPart: string = props.mode ? "protege" : "patron";
+  const showOptionsHandler = () => setShowOptions(!showOptions);
 
   const login = (event: MouseEvent): void => {
     event.preventDefault();
@@ -59,7 +63,9 @@ const Login = (props: Props) => {
 
   return (
     <div className="login">
-      <h1 className="login--header">ZALOGUJ</h1>
+      {!showOptions && (
+          <>
+          <h1 className="login--header">ZALOGUJ</h1>
       <Form className="login--form">
         <Form.Group className="login--form-switch">
         <BootstrapSwitchButton
@@ -115,10 +121,35 @@ const Login = (props: Props) => {
           </Button>
         )}
       </Form>
+          </>
+      )}
+      {
+          showOptions && (
+              <div className="options">
+                  <Button className="options--btn-back" variant="danger" onClick={showOptionsHandler}>X</Button>
+                  <figure className="options--figure">
+                  <div className="options--icon">
+                    <AiOutlineFork className="options--svg" size={128}/>
+                  </div>
+                  <figcaption>
+                  <Button variant="success" className="options--btn" onClick={showOptionsHandler}>Opiekun</Button>
+                  </figcaption>
+                  </figure>
+                  <figure className="options--figure">
+                  <div className="options--icon">
+                    <AiOutlineForm className="options--svg" size={128}/>
+                  </div>
+                  <figcaption>
+                  <Button variant="success" className="options--btn" onClick={showOptionsHandler}>Podopieczny</Button>
+                  </figcaption>
+                  </figure>
+              </div>
+          )
+      }
       <p className="login--paragraph">
         Nie masz jeszcze konta?{" "}
         <span>
-          <Button variant="success" className="login--signin">Stwórz</Button>
+            <Button variant="success" onClick={showOptionsHandler} className="login--signin">Stwórz</Button>
         </span>
       </p>
     </div>
