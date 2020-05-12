@@ -9,7 +9,7 @@ interface Props {
   mode: boolean;
   handler(): void;
   logHandler(): void;
-  reg(): void;
+  reg(reg: string): void;
 }
 
 const Login = (props: Props) => {
@@ -134,13 +134,13 @@ const Login = (props: Props) => {
             >
               X
             </Button>
-            <figure className="options--figure">
+            <figure className="options--figure" onClick={() => props.reg("patron")}>
               <div className="options--icon">
                 <AiOutlineFork className="options--svg" size={128} />
               </div>
               <figcaption className="options--figcaption">Opiekun</figcaption>
             </figure>
-            <figure className="options--figure">
+            <figure className="options--figure" onClick={() => props.reg("protege")}>
               <div className="options--icon">
                 <AiOutlineForm className="options--svg" size={128} />
               </div>

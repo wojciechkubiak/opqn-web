@@ -8,6 +8,7 @@ const App: React.FC = () => {
   const [loggedIn, setLoggedIn] = useState(false);
   const [mode, setMode] = useState(false);
   const [showRegister, setShowRegister] = useState(false);
+  const [regMode, setRegMode] = useState("");
 
   const history = useHistory();
   const log = localStorage.getItem("token") ? true : false;
@@ -18,8 +19,13 @@ const App: React.FC = () => {
     setMode(!mode);
   }
 
-  const regShowHandler = () => {
+  const regShowHandler = (reg: string) => {
     setShowRegister(!showRegister);
+    setRegMode(reg);
+  }
+
+  const regHideHandler = () => {
+    setShowRegister(false);
   }
 
   const logHandler = () => {
@@ -34,8 +40,8 @@ const App: React.FC = () => {
       )
     }
     {showRegister && (
-      <div className="register">
-        <h1>Siemka</h1>
+      <div className="register" onClick={regHideHandler}>
+        <h1>{regMode}</h1>
       </div>
     )}
       <Route path="/login">
