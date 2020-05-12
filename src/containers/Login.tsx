@@ -17,8 +17,12 @@ const Login = (props: Props) => {
   const [mail, setMail] = useState("");
   const [password, setPassword] = useState("");
   const [showOptions, setShowOptions] = useState(false);
+  
   let urlPart: string = props.mode ? "protege" : "patron";
-  const showOptionsHandler = () => setShowOptions(!showOptions);
+
+  const showOptionsHandler = () => {
+    setShowOptions(!showOptions);
+  };
 
   const login = (event: MouseEvent): void => {
     event.preventDefault();
@@ -157,7 +161,8 @@ const Login = (props: Props) => {
           <Button
             variant="success"
             onClick={showOptionsHandler}
-            className="login--signin"
+            className="signin-btn"
+            disabled={showOptions}
           >
             Stwórz
           </Button>
