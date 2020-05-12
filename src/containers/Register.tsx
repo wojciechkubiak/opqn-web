@@ -39,14 +39,16 @@ const Register = (props: Props) => {
         props.regSuccess();
       })
       .catch((error) => {
+        alert("Podany adres email jest już zajęty");
+        setRegister(false);
         console.error("Error", error);
       });
   };
 
   const data = useMemo(
     (): object => ({
-      firstname: firstname,
-      lastname: lastname,
+      firstname: firstname.charAt(0).toUpperCase() + firstname.slice(1),
+      lastname: lastname.charAt(0).toUpperCase() + lastname.slice(1),
       mail: mail,
       password: password,
     }),
