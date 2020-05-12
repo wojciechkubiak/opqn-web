@@ -4,46 +4,110 @@ html {
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
+  height: auto;
+  width: 100%;
+}
+
+.login {
+  position: absolute;
+  width: 100%;
   height: 100%;
-  box-shadow: inset 0 0 0 1000px rgba(0, 0, 0, .4);
 }
 
-.App {
+.login--header {
   text-align: center;
-  z-index: 200;
+  font-size: 112px;
+  color: rgba(0, 0, 0, 0.87);
+  position: fixed;
+  left: 50%;
+  top: 30%;
+  transform: translate(-50%, -50%);
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.login--form {
+  width: auto;
+  height: auto;
+  background-color: #ffffff;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4), 0 6px 20px 0 rgba(0, 0, 0, 0.3);
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.login--form-group {
+ width: 20em;
+ height: auto;
+ margin: 32px; 
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.login--form-switch {
+  width: auto;
+  height: auto;
+  margin: 8px; 
+  top: 0%;
+  transform: translate(0%, -50%);
 }
 
-.App-link {
-  color: #61dafb;
+.switch {
+  left: 50%;
+  transform: translate(-50%, 0%);
+  border-radius: 0 !important;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 4px 10px 0 rgba(0, 0, 0, 0.1);
+  border: none;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.switch-off {
+  background-color: #ffffff !important;
+}
+
+.switch-off.btn-lg.btn {
+  padding-left: 0rem !important;
+  padding-right: 0rem !important;
+}
+
+.switch-on.btn-lg.btn {
+  padding-left: 0rem !important;
+  padding-right: 0rem !important;
+}
+.login--form-btn {
+  position: relative;
+  left: 50%;
+  transform: translate(-50%, 40%);
+  border-radius: 0 !important;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 4px 10px 0 rgba(0, 0, 0, 0.1);
+  border: none;
+}
+
+.login--form-ctrl {
+  background-color: #d8d8d8 !important;
+  color: rgba(0, 0, 0, 0.87) !important;
+  text-align: center
+}
+
+.form-label {
+  display: block !important;
+  text-align: center !important; 
+}
+
+.login--paragraph {
+  position: absolute;
+  bottom: 0%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: inline-block;
+  font-size: 16px;
+}
+
+.login--signin {
+  color: rgba(255, 255, 255, 0.87);
+}
+
+.login--signin:hover {
+  text-decoration: underline;
+}
+
+.login--form-label {
+  font-size: 18px;
+  color: rgba(0, 0, 0, 0.87);
 }
