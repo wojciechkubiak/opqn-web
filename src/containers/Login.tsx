@@ -1,15 +1,15 @@
 import React, { useState, useMemo, useEffect, MouseEvent } from "react";
 import { Button, Form, Spinner } from "react-bootstrap";
 import BootstrapSwitchButton from "bootstrap-switch-button-react";
-import {AiOutlineFork, AiOutlineForm} from "react-icons/ai";
+import { AiOutlineFork, AiOutlineForm } from "react-icons/ai";
 
 import "../App.css";
 
 interface Props {
-    mode: boolean,
-    handler(): void,
-    logHandler(): void;
-    reg(): void;
+  mode: boolean;
+  handler(): void;
+  logHandler(): void;
+  reg(): void;
 }
 
 const Login = (props: Props) => {
@@ -23,7 +23,7 @@ const Login = (props: Props) => {
   const login = (event: MouseEvent): void => {
     event.preventDefault();
     setLogIn(true);
-    
+
     console.log(urlPart);
     fetch(`https://opqn-api.herokuapp.com/login-${urlPart}`, {
       method: "POST",
@@ -49,9 +49,9 @@ const Login = (props: Props) => {
   };
 
   useEffect(() => {
-      console.log(props.mode);
-      console.log(urlPart);
-  }, [props.mode])
+    console.log(props.mode);
+    console.log(urlPart);
+  }, [props.mode]);
 
   const data = useMemo(
     (): object => ({
@@ -64,92 +64,103 @@ const Login = (props: Props) => {
   return (
     <div className="login">
       {!showOptions && (
-          <>
+        <>
           <h1 className="login--header">ZALOGUJ</h1>
-      <Form className="login--form">
-        <Form.Group className="login--form-switch">
-        <BootstrapSwitchButton
-          checked={props.mode}
-          size="lg"
-          onlabel="PODOPIECZNY"
-          offlabel="OPIEKUN"
-          onstyle="success"
-          width={200} 
-          onChange={() => props.handler()
-          }
-        />
-        </Form.Group>
-        <Form.Group className="login--form-group">
-          <Form.Label className="login--form-label">Email</Form.Label>
-          <Form.Control
-            className="login--form-ctrl"
-            type="email"
-            placeholder="Wpisz email"
-            onChange={(event) => setMail(event.target.value)}
-          />
-        </Form.Group>
-        <Form.Group className="login--form-group">
-          <Form.Label className="login--form-label">Hasło</Form.Label>
-          <Form.Control
-            className="login--form-ctrl"
-            type="password"
-            placeholder="Wpisz hasło"
-            onChange={(event) => setPassword(event.target.value)}
-          />
-        </Form.Group>
-        {!logIn && (
-          <Button
-            className="login--form-btn"
-            variant="success"
-            size="lg"
-            onClick={login}
-            type="submit"
-          >
-            ZALOGUJ
-          </Button>
-        )}
-        {logIn && (
-          <Button variant="success" className="login--form-btn" disabled>
-            <Spinner
-              as="span"
-              animation="grow"
-              size="sm"
-              role="status"
-              aria-hidden="true"
-            />
-            Logowanie...
-          </Button>
-        )}
-      </Form>
-          </>
+          <Form className="login--form">
+            <Form.Group className="login--form-switch">
+              <BootstrapSwitchButton
+                checked={props.mode}
+                size="lg"
+                onlabel="PODOPIECZNY"
+                offlabel="OPIEKUN"
+                onstyle="success"
+                width={200}
+                onChange={() => props.handler()}
+              />
+            </Form.Group>
+            <Form.Group className="login--form-group">
+              <Form.Label className="login--form-label">Email</Form.Label>
+              <Form.Control
+                className="login--form-ctrl"
+                type="email"
+                placeholder="Wpisz email"
+                onChange={(event) => setMail(event.target.value)}
+              />
+            </Form.Group>
+            <Form.Group className="login--form-group">
+              <Form.Label className="login--form-label">Hasło</Form.Label>
+              <Form.Control
+                className="login--form-ctrl"
+                type="password"
+                placeholder="Wpisz hasło"
+                onChange={(event) => setPassword(event.target.value)}
+              />
+            </Form.Group>
+            {!logIn && (
+              <Button
+                className="login--form-btn"
+                variant="success"
+                size="lg"
+                onClick={login}
+                type="submit"
+              >
+                ZALOGUJ
+              </Button>
+            )}
+            {logIn && (
+              <Button variant="success" className="login--form-btn" disabled>
+                <Spinner
+                  as="span"
+                  animation="grow"
+                  size="sm"
+                  role="status"
+                  aria-hidden="true"
+                />
+                Logowanie...
+              </Button>
+            )}
+          </Form>
+        </>
       )}
-      {
-          showOptions && (
-              <div className="options">
-                  <Button className="options--btn-back" variant="danger" onClick={showOptionsHandler}>X</Button>
-                  <figure className="options--figure">
-                  <div className="options--icon">
-                    <AiOutlineFork className="options--svg" size={128}/>
-                  </div>
-                  <figcaption>
-                  <Button variant="success" className="options--btn" onClick={showOptionsHandler}>Opiekun</Button>
-                  </figcaption>
-                  </figure>
-                  <figure className="options--figure">
-                  <div className="options--icon">
-                    <AiOutlineForm className="options--svg" size={128}/>
-                  </div>
-                  <figcaption>
-                  <Button variant="success" className="options--btn" onClick={showOptionsHandler}>Podopieczny</Button>
-                  </figcaption>
-                  </figure>
+      {showOptions && (
+        <>
+          <h1 className="login--header">TYP KONTA</h1>
+
+          <div className="options">
+            <Button
+              className="options--btn-back"
+              variant="danger"
+              onClick={showOptionsHandler}
+            >
+              X
+            </Button>
+            <figure className="options--figure">
+              <div className="options--icon">
+                <AiOutlineFork className="options--svg" size={128} />
               </div>
-          )
-      }
+              <figcaption className="options--figcaption">Opiekun</figcaption>
+            </figure>
+            <figure className="options--figure">
+              <div className="options--icon">
+                <AiOutlineForm className="options--svg" size={128} />
+              </div>
+              <figcaption className="options--figcaption">
+                Podopieczny
+              </figcaption>
+            </figure>
+          </div>
+        </>
+      )}
       <p className="login--paragraph">
         Nie masz jeszcze konta?{" "}
         <span>
-            <Button variant="success" onClick={showOptionsHandler} className="login--signin">Stwórz</Button>
+          <Button
+            variant="success"
+            onClick={showOptionsHandler}
+            className="login--signin"
+          >
+            Stwórz
+          </Button>
         </span>
       </p>
     </div>
