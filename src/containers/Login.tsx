@@ -40,6 +40,7 @@ const Login = (props: Props) => {
       .then((data) => {
         if (data.token) {
           localStorage.setItem("token", data.token);
+          props.mode ? localStorage.setItem("mode", "protege") : localStorage.setItem("mode", "patron");
           setLogIn(false);
           props.logHandler();
         } else {

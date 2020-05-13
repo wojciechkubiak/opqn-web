@@ -201,6 +201,7 @@ html {
   border-radius: .25rem;
   padding: .375rem .75rem;
   border: none;
+  text-align: center;
 }
 
 .react-datepicker__input-container {
@@ -209,9 +210,9 @@ html {
 }
 
 .react-datepicker-wrapper {
-  width: 20em;
-  
+  width: 20em;  
 }
+
 .PhoneInputCountryIcon--border {
   border: none !important;
   box-shadow: none !important;
