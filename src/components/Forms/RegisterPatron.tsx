@@ -1,6 +1,7 @@
-import React, { useState, useMemo, useEffect, MouseEvent } from "react";
+import React, { useState, useMemo, useRef, useEffect, MouseEvent } from "react";
 import { Button, Form, Spinner } from "react-bootstrap";
 import { useHistory } from "react-router-dom";
+import { gsap } from "gsap";
 
 interface Props {
   hide(): void;
@@ -8,6 +9,8 @@ interface Props {
 }
 
 const RegisterPatron = (props: Props) => {
+  let patronFormRef = useRef<HTMLFormElement>(null);
+
   const [register, setRegister] = useState(false);
   const [firstname, setFirstname] = useState("");
   const [lastname, setLastname] = useState("");
@@ -15,6 +18,22 @@ const RegisterPatron = (props: Props) => {
   const [password, setPassword] = useState("");
 
   const history = useHistory();
+
+  useEffect(() => {
+    gsap.fromTo(
+      patronFormRef.current,
+      {
+        display: "none",
+        duration: 2,
+        y: -1000,
+      },
+      {
+        display: "block",
+        duration: 2,
+        y: -300,
+      }
+    );
+  }, []);
 
   const registerHandler = (event: MouseEvent): void => {
     event.preventDefault();
@@ -51,7 +70,11 @@ const RegisterPatron = (props: Props) => {
   );
 
   return (
-    <Form className="login--form">
+    <Form
+      className="login--form"
+      ref={patronFormRef}
+      style={{ display: "none" }}
+    >
       <Button
         className="options--btn-back"
         variant="danger"
@@ -122,6 +145,5 @@ const RegisterPatron = (props: Props) => {
     </Form>
   );
 };
-
 
 export default RegisterPatron;

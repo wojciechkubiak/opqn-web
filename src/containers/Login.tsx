@@ -1,7 +1,8 @@
-import React, { useState, useMemo, useEffect, MouseEvent } from "react";
+import React, { useState, useMemo, useEffect, useRef, MouseEvent } from "react";
 import { Button, Form, Spinner } from "react-bootstrap";
 import BootstrapSwitchButton from "bootstrap-switch-button-react";
 import { AiOutlineFork, AiOutlineForm } from "react-icons/ai";
+import { gsap } from "gsap";
 
 import "../App.scss";
 
@@ -13,6 +14,8 @@ interface Props {
 }
 
 const Login = (props: Props) => {
+  let containerRef = useRef<HTMLFormElement>(null);
+  let optionsRef = useRef<HTMLDivElement>(null);
   const [logIn, setLogIn] = useState(false);
   const [mail, setMail] = useState("");
   const [password, setPassword] = useState("");
@@ -59,6 +62,32 @@ const Login = (props: Props) => {
     console.log(urlPart);
   }, [props.mode]);
 
+  useEffect(() => {
+    gsap.fromTo(
+        containerRef.current, {
+            duration: 2,
+            y: -1000
+        }, {
+            duration: 2,
+            y: 0
+        }
+    )
+  }, [])
+
+  useEffect(() => {
+    gsap.fromTo(
+      optionsRef.current, {
+          display: "none",
+          duration: 2,
+          y: -1000
+      }, {
+          display: "block",
+          duration: 2,
+          y: -100
+      }
+    )
+  }, [showOptions])
+
   const data = useMemo(
     (): object => ({
       mail: mail,
@@ -72,7 +101,7 @@ const Login = (props: Props) => {
       {!showOptions && (
         <>
           <h1 className="login--header">ZALOGUJ</h1>
-          <Form className="login--form">
+          <Form className="login--form" ref={containerRef}>
             <Form.Group className="login--form-switch">
               <BootstrapSwitchButton
                 checked={props.mode}
@@ -132,7 +161,7 @@ const Login = (props: Props) => {
         <>
           <h1 className="login--header">TYP KONTA</h1>
 
-          <div className="options">
+          <div className="options" ref={optionsRef} style={{display: "none"}}>
             <Button
               className="options--btn-back"
               variant="danger"

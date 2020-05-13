@@ -1,4 +1,4 @@
-import React, { useState, useMemo, useEffect, MouseEvent } from "react";
+import React, { useState, useMemo, useRef, useEffect, MouseEvent } from "react";
 import { Button, Form, Spinner, InputGroup, Col } from "react-bootstrap";
 import { useHistory } from "react-router-dom";
 import DatePicker, {registerLocale} from 'react-datepicker';
@@ -6,7 +6,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import pl from "date-fns/locale/pl";
 import 'react-phone-number-input/style.css'
 import PhoneInput from 'react-phone-number-input'
-
+import {gsap} from "gsap";
 
 registerLocale("pl", pl);
 
@@ -17,6 +17,8 @@ interface Props {
 }
 
 const RegisterProtege = (props: Props) => {
+  let containerRef = useRef<HTMLFormElement>(null);
+
   const [register, setRegister] = useState(false);
   const [firstname, setFirstname] = useState("");
   const [lastname, setLastname] = useState("");
@@ -63,8 +65,22 @@ const RegisterProtege = (props: Props) => {
     [firstname, lastname, mail, password, birthday, phone]
   );
 
+  useEffect(() => {
+    gsap.fromTo(
+        containerRef.current, {
+            display: "none",
+            duration: 2,
+            y: -1000
+        }, {
+            display: "block",
+            duration: 2,
+            y: -350
+        }
+    )
+}, [])
+
   return (
-    <Form className="login--form" onSubmit={registerHandler}>
+    <Form className="login--form" onSubmit={registerHandler} style={{display: "none"}} ref={containerRef}>
       <Button
         className="options--btn-back"
         variant="danger"
