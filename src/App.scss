@@ -1,3 +1,5 @@
+$box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4), 0 6px 20px 0 rgba(0, 0, 0, 0.3);
+
 html { 
   background-size: cover;
   height: auto;
@@ -33,7 +35,7 @@ html {
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4), 0 6px 20px 0 rgba(0, 0, 0, 0.3);
+  box-shadow: $box-shadow;
 }
 
 .login--form-group {
@@ -54,7 +56,7 @@ html {
   left: 50%;
   transform: translate(-50%, 0%);
   border-radius: 0 !important;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 4px 10px 0 rgba(0, 0, 0, 0.1);
+  box-shadow: $box-shadow;
   border: none;
 }
 
@@ -76,7 +78,7 @@ html {
   left: 50%;
   transform: translate(-50%, 40%);
   border-radius: 0 !important;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 4px 10px 0 rgba(0, 0, 0, 0.1);
+  box-shadow: $box-shadow;
   border: none;
 }
 
@@ -102,7 +104,7 @@ html {
 
 .login--signin {
   border-radius: 0 !important;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 4px 10px 0 rgba(0, 0, 0, 0.1);
+  box-shadow: $box-shadow;
 }
 
 .login--signin:hover {
@@ -127,7 +129,7 @@ html {
   width: auto;
   height: auto;
   background-color: white;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 4px 10px 0 rgba(0, 0, 0, 0.1);
+  box-shadow: $box-shadow;
   left: 50%;
   top: 45%;
   transform: translate(-50%, -50%);
@@ -139,7 +141,7 @@ html {
   display: inline-block;
   border: 1px solid rgb(226, 226, 226);
   padding: 1em;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 4px 10px 0 rgba(0, 0, 0, 0.1);
+  box-shadow: $box-shadow;
   background-color: #28a745;
   transition-duration: 500ms;
 }
@@ -162,7 +164,7 @@ html {
   height: 2em;
   transform: translate(6px, -6px);
   border: none !important;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 4px 10px 0 rgba(0, 0, 0, 0.1);
+  box-shadow: $box-shadow
 
 }
 
@@ -183,4 +185,41 @@ html {
   color: #ffffff;
   text-align: center;
   font-size: 20px;
+}
+
+.login--form-datepicker {
+  width: 100% !important;
+  background-color: #d8d8d8 !important;
+  text-align: center;
+  border: none;
+  border-radius: .25rem;
+  padding: .375rem .75rem;
+}
+
+.PhoneInputInput {
+  background-color: #d8d8d8 !important;
+  border-radius: .25rem;
+  padding: .375rem .75rem;
+  border: none;
+}
+
+.react-datepicker__input-container {
+  text-align: center;
+  font-size: 1rem;
+}
+
+.react-datepicker-wrapper {
+  width: 20em;
+  
+}
+.PhoneInputCountryIcon--border {
+  border: none !important;
+  box-shadow: none !important;
+  background-color: #ffffff !important;
+  transform: scale(1.1) !important;
+}
+
+.PhoneInputCountryIconImg {
+  border: 1px solid #d8d8d8 !important;
+  padding: .1rem !important;
 }
