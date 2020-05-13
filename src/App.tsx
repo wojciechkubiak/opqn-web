@@ -47,6 +47,15 @@ const App: React.FC = () => {
     console.log(showPatron, showProtege)
   }, [log, loggedIn, showPatron, showProtege]);
 
+  useEffect(() => {
+    const lastLogDate = localStorage.getItem("logDate") || Date.now();
+    const diff = Date.now() - +(new Date(lastLogDate));
+    
+    if(diff >= 172800000) {
+      localStorage.clear();
+    }
+  }, []);
+
   const regShowHandler = (reg: string) => {
     setShowRegister(!showRegister);
     setRegMode(reg);

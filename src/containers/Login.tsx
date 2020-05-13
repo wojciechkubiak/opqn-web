@@ -27,8 +27,8 @@ const Login = (props: Props) => {
   const login = (event: MouseEvent): void => {
     event.preventDefault();
     setLogIn(true);
+    const logDate = new Date();
 
-    console.log(urlPart);
     fetch(`https://opqn-api.herokuapp.com/login-${urlPart}`, {
       method: "POST",
       headers: {
@@ -41,6 +41,7 @@ const Login = (props: Props) => {
         if (data.token) {
           localStorage.setItem("token", data.token);
           props.mode ? localStorage.setItem("mode", "protege") : localStorage.setItem("mode", "patron");
+          localStorage.setItem("logDate", logDate.toISOString())
           setLogIn(false);
           props.logHandler();
         } else {
