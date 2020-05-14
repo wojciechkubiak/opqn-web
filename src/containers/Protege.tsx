@@ -1,11 +1,11 @@
 import React from "react";
 
 interface Props {
-//   uid: string;
+  userID: string
 }
 
 const Protege = (props: Props) => {
-  return <h1>Protege</h1>;
+  return <h1>Protege {props.userID}</h1>;
 };
 
 export default Protege;

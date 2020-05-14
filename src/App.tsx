@@ -20,9 +20,10 @@ const App: React.FC = () => {
   const [logMode, setLogMode] = useState(false);
   const [showPatron, setShowPatron] = useState(false);
   const [showProtege, setShowProtege] = useState(false);
-  const localMode = localStorage.getItem("mode");
+  const [userID, setUserID] = useState("");
+  const localMode = sessionStorage.getItem("mode");
   const history = useHistory();
-  const log = localStorage.getItem("token") ? true : false;
+  const log = sessionStorage.getItem("token") ? true : false;
   const routeToMainSite = () => history.push("/");
 
   const modeHandler = () => {
@@ -32,7 +33,7 @@ const App: React.FC = () => {
   useEffect(() => {
     setLoggedIn(log);
 
-    let localMode = localStorage.getItem("mode");
+    let localMode = sessionStorage.getItem("mode");
 
     if (localMode === "patron" && loggedIn) {
       setShowPatron(true);
@@ -47,11 +48,11 @@ const App: React.FC = () => {
   }, [log, loggedIn, showPatron, showProtege]);
 
   useEffect(() => {
-    const lastLogDate = localStorage.getItem("logDate") || Date.now();
+    const lastLogDate = sessionStorage.getItem("logDate") || Date.now();
     const diff = Date.now() - +(new Date(lastLogDate));
     
     if(diff >= 172800000) {
-      localStorage.clear();
+      sessionStorage.clear();
     }
   }, []);
 
@@ -75,6 +76,10 @@ const App: React.FC = () => {
     setLoggedIn(true);
   };
 
+  const userHandler = (id: string) => {
+    setUserID(id);
+  }
+
   return (
     <div className="App">
       {!loggedIn && (
@@ -83,6 +88,7 @@ const App: React.FC = () => {
           reg={regShowHandler}
           handler={modeHandler}
           logHandler={logHandler}
+          userHandler={userHandler}
         />
       )}
       {showRegister && (
@@ -92,9 +98,9 @@ const App: React.FC = () => {
           regSuccess={regSuccessHandler}
         />
       )}
-      {showPatron && <Patron />}
+      {showPatron && <Patron userID={userID}/>}
 
-      {showProtege && <Protege />}
+      {showProtege && <Protege userID={userID}/>}
     </div>
   );
 };

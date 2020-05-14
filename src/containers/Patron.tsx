@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 
 interface Props {
-//   uid: string;
+  userID: string
 }
 
 const Patron = (props: Props) => {
@@ -24,7 +24,7 @@ const Patron = (props: Props) => {
   }, []);
 
   useEffect(() => {
-    const id = localStorage.getItem("id");
+    const id = sessionStorage.getItem("id");
     if(id) {
       setUserID(id);
     }
@@ -34,7 +34,7 @@ const Patron = (props: Props) => {
   return (
     <div className="patron">
       <div className="patron--container" ref={containerRef}>
-        <h1>Patron</h1>
+        <h1>Patron {props.userID}</h1>
       </div>
     </div>
   );
