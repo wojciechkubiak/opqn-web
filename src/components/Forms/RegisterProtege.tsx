@@ -1,15 +1,14 @@
 import React, { useState, useMemo, useRef, useEffect, MouseEvent } from "react";
 import { Button, Form, Spinner, InputGroup, Col } from "react-bootstrap";
 import { useHistory } from "react-router-dom";
-import DatePicker, {registerLocale} from 'react-datepicker';
+import DatePicker, { registerLocale } from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import pl from "date-fns/locale/pl";
-import 'react-phone-number-input/style.css'
-import PhoneInput from 'react-phone-number-input'
-import {gsap} from "gsap";
+import "react-phone-number-input/style.css";
+import PhoneInput from "react-phone-number-input";
+import { gsap } from "gsap";
 
 registerLocale("pl", pl);
-
 
 interface Props {
   hide(): void;
@@ -60,32 +59,52 @@ const RegisterProtege = (props: Props) => {
       mail: mail,
       password: password,
       birthday: birthday,
-      phone: `${phone}`
+      phone: `${phone}`,
     }),
     [firstname, lastname, mail, password, birthday, phone]
   );
 
   useEffect(() => {
     gsap.fromTo(
-        containerRef.current, {
-            display: "none",
-            duration: 2,
-            y: -1000
-        }, {
-            display: "block",
-            duration: 2,
-            y: -350
-        }
-    )
-}, [])
+      containerRef.current,
+      {
+        display: "none",
+        duration: 1,
+        y: -425,
+      },
+      {
+        display: "block",
+        duration: 1,
+        y: -350,
+      }
+    );
+  }, []);
 
+  const hide = () => {
+    gsap.fromTo(
+      containerRef.current,
+      {
+        duration: 1,
+        y: -350,
+      },
+      {
+        duration: 1,
+        y: -425,
+        opacity: 0,
+        onComplete: function () {
+          props.hide();
+        },
+      }
+    );
+  };
   return (
-    <Form className="login--form" onSubmit={registerHandler} style={{display: "none"}} ref={containerRef}>
-      <Button
-        className="options--btn-back"
-        variant="danger"
-        onClick={props.hide}
-      >
+    <Form
+      className="login--form"
+      onSubmit={registerHandler}
+      style={{ display: "none" }}
+      ref={containerRef}
+    >
+      <Button className="options--btn-back" variant="danger" onClick={hide}>
         X
       </Button>
       <Form.Group className="login--form-group">
@@ -128,22 +147,26 @@ const RegisterProtege = (props: Props) => {
           required
         />
       </Form.Group>
-      <Form.Group className="login--form-group" controlId="validationCustomUsername">
-          <Form.Label className="login--form-label">Numer telefonu</Form.Label>
-          <PhoneInput
-            placeholder="Wpisz numer"
-            value={phone}
-            onChange={setPhone}/>
-        </Form.Group>
-        <Form.Group className="login--form-group">
-          <Form.Label className="login--form-label">Data zakupu</Form.Label>
-          <DatePicker
-            className="login--form-datepicker"
-            locale="pl"
-            selected={birthday}
-            onChange={(date) => setBirthday(date)}
-          />
-        </Form.Group>
+      <Form.Group
+        className="login--form-group"
+        controlId="validationCustomUsername"
+      >
+        <Form.Label className="login--form-label">Numer telefonu</Form.Label>
+        <PhoneInput
+          placeholder="Wpisz numer"
+          value={phone}
+          onChange={setPhone}
+        />
+      </Form.Group>
+      <Form.Group className="login--form-group">
+        <Form.Label className="login--form-label">Data zakupu</Form.Label>
+        <DatePicker
+          className="login--form-datepicker"
+          locale="pl"
+          selected={birthday}
+          onChange={(date) => setBirthday(date)}
+        />
+      </Form.Group>
       {!register && (
         <Button
           className="login--form-btn"
@@ -169,6 +192,5 @@ const RegisterProtege = (props: Props) => {
     </Form>
   );
 };
-
 
 export default RegisterProtege;

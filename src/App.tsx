@@ -21,7 +21,6 @@ const App: React.FC = () => {
   const [showPatron, setShowPatron] = useState(false);
   const [showProtege, setShowProtege] = useState(false);
   const localMode = localStorage.getItem("mode");
-
   const history = useHistory();
   const log = localStorage.getItem("token") ? true : false;
   const routeToMainSite = () => history.push("/");

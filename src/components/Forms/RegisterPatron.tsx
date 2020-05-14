@@ -24,16 +24,32 @@ const RegisterPatron = (props: Props) => {
       patronFormRef.current,
       {
         display: "none",
-        duration: 2,
-        y: -1000,
+        duration: 1,
+        y: -375,
       },
       {
         display: "block",
-        duration: 2,
+        duration: 1,
         y: -300,
       }
     );
   }, []);
+
+  const hide = () => {
+    gsap.fromTo(
+      patronFormRef.current, {
+          duration: 1,
+          y: -300
+      }, {
+          duration: 1,
+          y: -375,
+          opacity: 0,
+          onComplete: function() {
+            props.hide()
+          }
+      }
+  )
+  }
 
   const registerHandler = (event: MouseEvent): void => {
     event.preventDefault();
@@ -78,7 +94,7 @@ const RegisterPatron = (props: Props) => {
       <Button
         className="options--btn-back"
         variant="danger"
-        onClick={props.hide}
+        onClick={hide}
       >
         X
       </Button>

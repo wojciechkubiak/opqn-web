@@ -14,7 +14,6 @@ interface Props {
 }
 
 const Login = (props: Props) => {
-  let containerRef = useRef<HTMLFormElement>(null);
   let optionsRef = useRef<HTMLDivElement>(null);
   const [logIn, setLogIn] = useState(false);
   const [mail, setMail] = useState("");
@@ -43,6 +42,7 @@ const Login = (props: Props) => {
       .then((data) => {
         if (data.token) {
           localStorage.setItem("token", data.token);
+          localStorage.setItem("id", data.id);
           props.mode ? localStorage.setItem("mode", "protege") : localStorage.setItem("mode", "patron");
           localStorage.setItem("logDate", logDate.toISOString())
           setLogIn(false);
@@ -62,32 +62,35 @@ const Login = (props: Props) => {
     console.log(urlPart);
   }, [props.mode]);
 
-  useEffect(() => {
-    gsap.fromTo(
-        containerRef.current, {
-            duration: 2,
-            y: -1000
-        }, {
-            duration: 2,
-            y: 0
-        }
-    )
-  }, [])
 
   useEffect(() => {
     gsap.fromTo(
       optionsRef.current, {
           display: "none",
-          duration: 2,
-          y: -1000
+          duration: 1,
+          opacity: 0,
+          y: -175
       }, {
           display: "block",
-          duration: 2,
+          duration: 1,
+          opacity: 1,
           y: -100
       }
     )
   }, [showOptions])
 
+  const hideOptions = () => {
+    gsap.to(
+      optionsRef.current, {
+          duration: .2,
+          opacity: 0,
+          onComplete: () => {
+            showOptionsHandler()
+          }
+      }
+    )
+    
+  }
   const data = useMemo(
     (): object => ({
       mail: mail,
@@ -101,7 +104,7 @@ const Login = (props: Props) => {
       {!showOptions && (
         <>
           <h1 className="login--header">ZALOGUJ</h1>
-          <Form className="login--form" ref={containerRef}>
+          <Form className="login--form">
             <Form.Group className="login--form-switch">
               <BootstrapSwitchButton
                 checked={props.mode}
@@ -165,7 +168,7 @@ const Login = (props: Props) => {
             <Button
               className="options--btn-back"
               variant="danger"
-              onClick={showOptionsHandler}
+              onClick={hideOptions}
             >
               X
             </Button>
