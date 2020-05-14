@@ -21,9 +21,9 @@ const App: React.FC = () => {
   const [showPatron, setShowPatron] = useState(false);
   const [showProtege, setShowProtege] = useState(false);
   const [userID, setUserID] = useState("");
-  const localMode = sessionStorage.getItem("mode");
+  const localMode = localStorage.getItem("mode");
   const history = useHistory();
-  const log = sessionStorage.getItem("token") ? true : false;
+  const log = localStorage.getItem("token") ? true : false;
   const routeToMainSite = () => history.push("/");
 
   const modeHandler = () => {
@@ -33,7 +33,7 @@ const App: React.FC = () => {
   useEffect(() => {
     setLoggedIn(log);
 
-    let localMode = sessionStorage.getItem("mode");
+    let localMode = localStorage.getItem("mode");
 
     if (localMode === "patron" && loggedIn) {
       setShowPatron(true);
@@ -48,11 +48,11 @@ const App: React.FC = () => {
   }, [log, loggedIn, showPatron, showProtege]);
 
   useEffect(() => {
-    const lastLogDate = sessionStorage.getItem("logDate") || Date.now();
+    const lastLogDate = localStorage.getItem("logDate") || Date.now();
     const diff = Date.now() - +(new Date(lastLogDate));
     
     if(diff >= 172800000) {
-      sessionStorage.clear();
+      localStorage.clear();
     }
   }, []);
 

@@ -42,10 +42,11 @@ const Login = (props: Props) => {
       .then((response) => response.json())
       .then((data) => {
         if (data.token) {
-          sessionStorage.setItem("token", data.token);
+          localStorage.setItem("token", data.token);
+          localStorage.setItem("id", data.id);
           props.userHandler(data.id);
-          props.mode ? sessionStorage.setItem("mode", "protege") : sessionStorage.setItem("mode", "patron");
-          sessionStorage.setItem("logDate", logDate.toISOString())
+          props.mode ? localStorage.setItem("mode", "protege") : localStorage.setItem("mode", "patron");
+          localStorage.setItem("logDate", logDate.toISOString())
           setLogIn(false);
           props.logHandler();
         } else {

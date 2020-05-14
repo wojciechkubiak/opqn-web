@@ -24,7 +24,7 @@ const Patron = (props: Props) => {
   }, []);
 
   useEffect(() => {
-    const id = sessionStorage.getItem("id");
+    const id = localStorage.getItem("id");
     if(id) {
       setUserID(id);
     }
