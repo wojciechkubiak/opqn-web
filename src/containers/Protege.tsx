@@ -9,8 +9,8 @@ const Protege = (props: Props) => {
   const token = localStorage.getItem("token");
 
   const getData = () => {
-    const id = localStorage.getItem("id");
-    fetch(`https://opqn-api.herokuapp.com/exams/${id}`, {
+    console.log("Getting data");
+    fetch(`https://opqn-api.herokuapp.com/exams`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",

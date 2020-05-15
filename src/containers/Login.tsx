@@ -43,7 +43,6 @@ const Login = (props: Props) => {
       .then((data) => {
         if (data.token) {
           localStorage.setItem("token", data.token);
-          localStorage.setItem("id", data.id);
           props.userHandler(data.id);
           props.mode ? localStorage.setItem("mode", "protege") : localStorage.setItem("mode", "patron");
           localStorage.setItem("logDate", logDate.toISOString())
