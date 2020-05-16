@@ -4,6 +4,11 @@ html {
   background-size: cover;
   height: auto;
   width: 100%;
+  font-family: 'Merriweather Sans', sans-serif !important;
+}
+
+body {
+  font-family: 'Merriweather Sans', sans-serif !important;
 }
 
 .login {
@@ -241,5 +246,14 @@ html {
   width: 80%;
   left: 10%;
   height: 100%;
-  background-color: #ffffff;
+  //background-color: #ffffa6;
+}
+
+.exam--send-info {
+  width: auto;
+  height: auto;
+  background-color: #5cb85c;
+  border-bottom-left-radius: 2em;
+  border-bottom-right-radius: 2em;
+  box-shadow: $box-shadow;
 }
