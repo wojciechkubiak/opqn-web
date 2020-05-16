@@ -1,5 +1,5 @@
 import React, {useEffect, useRef, useState} from "react";
-import {Spinner} from "react-bootstrap";
+import {Spinner, Modal, Button} from "react-bootstrap";
 import Exam from "./../components/Forms/Exam";
 
 import 'core-js';
@@ -17,6 +17,14 @@ const Protege = (props: Props) => {
   const token = localStorage.getItem("token");
   const [examDate, setExamDate] = useState("");
   const [equalDate, setEqualDate] = useState(false);
+  const [modalShownAtSession, setModalShownAtSession] = useState(false);
+
+  const [modalShow, setModalShow] = useState(true);
+
+  const hideModal = () => {
+    setModalShow(false);
+    sessionStorage.setItem("modal", "true");
+  }
 
   const getData = () => {
     console.log("Getting data");
@@ -31,6 +39,13 @@ const Protege = (props: Props) => {
     .then(res => setExamDateData(res))
     .catch(error => error);
   }
+
+  useEffect(() => {
+    const isShown = sessionStorage.getItem("modal");
+    if(isShown) {
+      setModalShownAtSession(true);
+    }
+  })
 
   useEffect(() => {
     getData();
@@ -112,6 +127,31 @@ const Protege = (props: Props) => {
         )}
         {!loaded && (
             <Spinner animation="border" variant="success" style={{position: "fixed", top: "50%", left: "50%", transform: "translate(-50%, -50%)"}}/>
+        )}
+        {!modalShownAtSession && (
+            <Modal
+                show={modalShow}
+                size="lg"
+                aria-labelledby="contained-modal-title-vcenter"
+                centered
+            >
+              <Modal.Header>
+                <Modal.Title id="contained-modal-title-vcenter">
+                  Informacja
+                </Modal.Title>
+              </Modal.Header>
+              <Modal.Body>
+                <p>
+                  Upewnij się, że wszystkie wprowadzone dane są zgodne ze stanem faktycznym.
+                  Aplikacja ta ma za zadanie pomóc w utrzymaniu diety. Pierwszym krokiem ku temu celowi jest bycie uczciwym przed samym sobą,
+                  co wiąże się również z uczciwością względem dietetyka. Proszę być spokojnym, w aktualnym świecie, Twoje liczby nikogo nie zszokują.
+                  Po zatwierdzeniu danych, nie będzie możliwości ich edycji.
+                </p>
+              </Modal.Body>
+              <Modal.Footer>
+                <Button variant="success" onClick={hideModal}>Rozumiem</Button>
+              </Modal.Footer>
+            </Modal>
         )}
       </div>
   );
