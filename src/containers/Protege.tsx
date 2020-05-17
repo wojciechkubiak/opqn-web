@@ -49,7 +49,7 @@ const Protege = (props: Props) => {
 
   useEffect(() => {
     getData();
-  }, [equalDate]);
+  }, [equalDate, loaded]);
 
   useEffect(() => {
     if(examDateData) {
@@ -86,6 +86,7 @@ const Protege = (props: Props) => {
       );
     }
   }, [loaded])
+
   const compareDates = (date : string) => {
     const _date = new Date();
     const exam = new Date(date);
@@ -111,7 +112,7 @@ const Protege = (props: Props) => {
             <div className="patron--container" style={{display: "none"}} ref={containerRef}>
               {
                 !equalDate && (
-                  <Exam/>
+                  <Exam loadedHandler={setLoaded}/>
                 )
               }
               {
@@ -136,12 +137,12 @@ const Protege = (props: Props) => {
                 centered
             >
               <Modal.Header>
-                <Modal.Title id="contained-modal-title-vcenter">
+                <Modal.Title id="contained-modal-title-vcenter" style={{color: "rgba(0,0,0,0.8)"}}>
                   Informacja
                 </Modal.Title>
               </Modal.Header>
               <Modal.Body>
-                <p>
+                <p style={{color: "rgba(0,0,0,0.67)"}}>
                   Upewnij się, że wszystkie wprowadzone dane są zgodne ze stanem faktycznym.
                   Aplikacja ta ma za zadanie pomóc w utrzymaniu diety. Pierwszym krokiem ku temu celowi jest bycie uczciwym przed samym sobą,
                   co wiąże się również z uczciwością względem dietetyka. Proszę być spokojnym, w aktualnym świecie, Twoje liczby nikogo nie zszokują.
