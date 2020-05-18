@@ -1,8 +1,11 @@
-import React, { MouseEvent, useMemo, useState } from "react";
+import React, { MouseEvent, useMemo, useState, useEffect, useRef } from "react";
 import { Button, Form, Spinner, Modal, Row, Col } from "react-bootstrap";
 import DatePicker, { registerLocale } from "react-datepicker";
+import { gsap } from "gsap";
 import "react-datepicker/dist/react-datepicker.css";
 import pl from "date-fns/locale/pl";
+import { FiFilePlus } from "react-icons/fi";
+
 registerLocale("pl", pl);
 
 interface Props {
@@ -22,9 +25,58 @@ const Exam = (props: Props) => {
   const [wrongSecondPressure, setWrongSecondPressure] = useState<Object>({});
   const [showWeightFig, setShowWeightFig] = useState<boolean>(false);
   const [showGlucoseFig, setShowGlucoseFig] = useState<boolean>(false);
-  const [showFirstPressureFig, setShowFirstPressureFig] = useState<boolean>(false);
-  const [showSecondPressureFig, setShowSecondPressureFig] = useState<boolean>(false);
+  const [showFirstPressureFig, setShowFirstPressureFig] = useState<boolean>(
+    false
+  );
+  const [showSecondPressureFig, setShowSecondPressureFig] = useState<boolean>(
+    false
+  );
+  const [showForm, setShowForm] = useState(false);
+  const [value, setValue] = useState(false);
 
+  const showFormHandler = () => setValue(!value);
+
+  let containerRef = useRef<HTMLFormElement>(null);
+
+  useEffect(() => {
+    if (value) {
+      setShowForm(true);
+      gsap.fromTo(
+        containerRef.current,
+        {
+          duration: 0.5,
+          display: "none",
+          y: -200,
+          opacity: 0,
+        },
+        {
+          duration: 0.5,
+          display: "block",
+          y: 0,
+          opacity: 1,
+        }
+      );
+    } else {
+      gsap.fromTo(
+        containerRef.current,
+        {
+          duration: 0.5,
+          display: "block",
+          y: 0,
+          opacity: 1,
+        },
+        {
+          duration: 0.5,
+          display: "none",
+          y: -100,
+          opacity: 0,
+          onComplete: () => {
+            setShowForm(false);
+          },
+        }
+      );
+    }
+  }, [value]);
 
   const data = useMemo(
     (): object => ({
@@ -96,141 +148,207 @@ const Exam = (props: Props) => {
       borderBottom: "3px solid #ff4444",
     });
   };
+
   return (
-    <Form className="login--form">
-      <Form.Group className="login--form-group">
-        <Form.Label className="login--form-label">Waga</Form.Label>
-        <figure>
-          <Form.Control
-            className="login--form-ctrl"
-            style={wrongWeight}
-            type="number"
-            placeholder="Wpisz aktualną wagę"
-            required
-            onChange={(event) => {
-                setWeight(event.target.value)
-                setWrongWeight({})
-                setShowWeightFig(false)
-            }}
-          />
-         {
-             showWeightFig && (
-                <figcaption style={{ textAlign: "center", color: "#ff4444" }}>
-                    Błedne dane
-                </figcaption>
-             )
-         }
-        </figure>
-      </Form.Group>
-      <Form.Group className="login--form-group">
-        <Form.Label className="login--form-label">Glukoza</Form.Label>
-        <figure>
-        <Form.Control
-          className="login--form-ctrl"
-          type="number"
-          style={wrongGlucose}
-          placeholder="Wpisz poziom glukozy"
-          required
-          onChange={(event) => {
-            setGlucose(event.target.value)
-            setWrongGlucose({})
-            setShowGlucoseFig(false)
-          }}
-        />
-        {
-             showGlucoseFig && (
-                <figcaption style={{ textAlign: "center", color: "#ff4444" }}>
-                    Błedne dane
-                </figcaption>
-             )
-         }
-         </figure>
-      </Form.Group>
-      <Form.Group className="login--form-group">
-        <Form.Label className="login--form-label">Ciśnienie</Form.Label>
-        <Row>
-          <Col>
-          <figure>
-            <Form.Control
-              className="login--form-ctrl"
-              type="number"
-              style={wrongFirstPressure}
-              placeholder="Wpisz tętnicze"
-              required
-              onChange={(event) => {
-                setFirstPressure(event.target.value)
-                setWrongFirstPressure({})
-                setShowFirstPressureFig(false)
-              }}
-            />
-            {
-             showFirstPressureFig && (
-                <figcaption style={{ textAlign: "center", color: "#ff4444" }}>
-                    Błedne dane
-                </figcaption>
-             )
-         }
-         </figure>
-          </Col>
-        </Row>
-        <Row>
-          <Col>
-          <figure>
-            <Form.Control
-              className="login--form-ctrl"
-              type="number"
-              style={wrongSecondPressure}
-              placeholder="Ciśnienie skurczowe"
-              required
-              onChange={(event) => {
-                setSecondPressure(event.target.value)
-                setWrongSecondPressure({})
-                setShowSecondPressureFig(false)
-              }}
-            />
-            {
-             showSecondPressureFig && (
-                <figcaption style={{ textAlign: "center", color: "#ff4444" }}>
-                    Błedne dane
-                </figcaption>
-             )
-         }
-         </figure>
-          </Col>
-        </Row>
-      </Form.Group>
-      <Form.Group className="login--form-group">
-        <Form.Label className="login--form-label">Data badania</Form.Label>
-        <DatePicker
-          className="login--form-datepicker"
-          locale="pl"
-          selected={examDate}
-          onChange={(date) => setExamDate(date)}
-        />
-      </Form.Group>
-      {!showSpinner && (
+    <>
+      {!showForm && (
         <Button
-          className="login--form-btn"
           variant="success"
-          size="lg"
-          onClick={postHandler}
-          type="submit"
+          onClick={showFormHandler}
+          style={{
+            width: "auto",
+            height: "auto",
+            right: "48px",
+            bottom: "48px",
+            padding: "24px",
+            position: "fixed",
+            borderRadius: "50%",
+          }}
         >
-          DODAJ
+          <FiFilePlus size={32} />
         </Button>
       )}
-      {showSpinner && (
-        <Spinner
-          animation="border"
-          variant="success"
-          style={{
-            position: "relative",
-            left: "50%",
-            transform: "translate(-50%, 0%)",
-          }}
-        />
+      {showForm && (
+        <Form className="exam--form" ref={containerRef}>
+          <Button
+            onClick={showFormHandler}
+            style={{
+              position: "absolute",
+              right: "0",
+              borderRadius: "0",
+              backgroundColor: "#ffffff",
+              color: "#a8a8a8",
+              border: "none",
+            }}
+          >
+            X
+          </Button>
+          <Form.Group className="exam--form-group">
+            <h1
+              style={{
+                textAlign: "center",
+                marginTop: "10px",
+                marginBottom: "24px",
+                color: "rgba(0, 0, 0, 0.67)",
+              }}
+            >
+              Badanie
+            </h1>
+            <Row>
+              <Col>
+                <Form.Label className="exam--form-label">
+                  Data badania
+                </Form.Label>
+                <DatePicker
+                  className="exam--form-datepicker"
+                  locale="pl"
+                  selected={examDate}
+                  onChange={(date) => setExamDate(date)}
+                />
+              </Col>
+              <Col>
+                <Form.Label className="exam--form-label">Waga</Form.Label>
+                <figure>
+                  <Form.Control
+                    className="exam--form-ctrl"
+                    style={wrongWeight}
+                    type="number"
+                    placeholder="Wpisz aktualną wagę"
+                    required
+                    onChange={(event) => {
+                      setWeight(event.target.value);
+                      setWrongWeight({});
+                      setShowWeightFig(false);
+                    }}
+                  />
+                  {showWeightFig && (
+                    <figcaption
+                      style={{ textAlign: "center", color: "#ff4444" }}
+                    >
+                      Błedne dane
+                    </figcaption>
+                  )}
+                </figure>
+              </Col>
+              <Col>
+                <Form.Label className="exam--form-label">Glukoza</Form.Label>
+                <figure>
+                  <Form.Control
+                    className="exam--form-ctrl"
+                    type="number"
+                    style={wrongGlucose}
+                    placeholder="Wpisz poziom glukozy"
+                    required
+                    onChange={(event) => {
+                      setGlucose(event.target.value);
+                      setWrongGlucose({});
+                      setShowGlucoseFig(false);
+                    }}
+                  />
+                  {showGlucoseFig && (
+                    <figcaption
+                      style={{ textAlign: "center", color: "#ff4444" }}
+                    >
+                      Błedne dane
+                    </figcaption>
+                  )}
+                </figure>
+              </Col>
+            </Row>
+          </Form.Group>
+          <Form.Group className="exam--form-group">
+            <Row>
+              <Col>
+                <Form.Label className="exam--form-label">
+                  Ciśnienie tętnicze
+                </Form.Label>
+                <figure>
+                  <Form.Control
+                    className="exam--form-ctrl"
+                    type="number"
+                    style={wrongFirstPressure}
+                    placeholder="Wpisz tętnicze"
+                    required
+                    onChange={(event) => {
+                      setFirstPressure(event.target.value);
+                      setWrongFirstPressure({});
+                      setShowFirstPressureFig(false);
+                    }}
+                  />
+                  {showFirstPressureFig && (
+                    <figcaption
+                      style={{ textAlign: "center", color: "#ff4444" }}
+                    >
+                      Błedne dane
+                    </figcaption>
+                  )}
+                </figure>
+              </Col>
+              <Col>
+                <Form.Label className="exam--form-label">
+                  Ciśnienie skurczowe
+                </Form.Label>
+                <figure>
+                  <Form.Control
+                    className="exam--form-ctrl"
+                    type="number"
+                    style={wrongSecondPressure}
+                    placeholder="Ciśnienie skurczowe"
+                    required
+                    onChange={(event) => {
+                      setSecondPressure(event.target.value);
+                      setWrongSecondPressure({});
+                      setShowSecondPressureFig(false);
+                    }}
+                  />
+                  {showSecondPressureFig && (
+                    <figcaption
+                      style={{ textAlign: "center", color: "#ff4444" }}
+                    >
+                      Błedne dane
+                    </figcaption>
+                  )}
+                </figure>
+              </Col>
+            </Row>
+          </Form.Group>
+
+          {!showSpinner && (
+            <Button
+              className="exam--form-btn"
+              variant="success"
+              size="lg"
+              onClick={postHandler}
+              type="submit"
+            >
+              DODAJ
+            </Button>
+          )}
+          {showSpinner && (
+            <Button
+              variant="success"
+              style={{
+                position: "relative",
+                left: "50%",
+                transform: "translate(-50%, 0%)",
+                width: "100%",
+                borderRadius: "0"
+              }}
+              disabled
+            >
+              <Spinner
+                as="span"
+                animation="grow"
+                size="sm"
+                role="status"
+                aria-hidden="true"
+              />
+              Loading...
+            </Button>
+          )}
+        </Form>
       )}
-    </Form>
+    </>
   );
 };
 

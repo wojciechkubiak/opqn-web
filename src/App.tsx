@@ -14,7 +14,9 @@ import "./App.scss";
 
 const App: React.FC = () => {
   const [loggedIn, setLoggedIn] = useState(false);
-  const [mode, setMode] = useState(false);
+  const [mode, setMode] = useState(
+    localStorage.getItem("mode") === "patron" ? false : true 
+  );
   const [showRegister, setShowRegister] = useState(false);
   const [regMode, setRegMode] = useState("");
   const [logMode, setLogMode] = useState(false);

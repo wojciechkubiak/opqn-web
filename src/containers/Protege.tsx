@@ -3,22 +3,19 @@ import {Spinner, Modal, Button} from "react-bootstrap";
 import Exam from "./../components/Forms/Exam";
 
 import 'core-js';
-import { gsap } from "gsap";
-import {equal} from "assert";
 
 interface Props {
   userID: string
 }
 
 const Protege = (props: Props) => {
-  let containerRef = useRef<HTMLDivElement>(null);
   const [loaded, setLoaded] = useState<boolean>(false);
   const [examDateData, setExamDateData] = useState<any>([]);
   const token = localStorage.getItem("token");
   const [examDate, setExamDate] = useState("");
   const [equalDate, setEqualDate] = useState(false);
   const [modalShownAtSession, setModalShownAtSession] = useState(false);
-
+  
   const [modalShow, setModalShow] = useState(true);
 
   const hideModal = () => {
@@ -67,25 +64,7 @@ const Protege = (props: Props) => {
 
   }, [examDateData, examDate, equalDate])
 
-  useEffect(() => {
-    if(loaded) {
-      gsap.fromTo(
-          containerRef.current,
-          {
-            duration: .5,
-            display: "none",
-            y: -200,
-            opacity: 0
-          },
-          {
-            duration: .5,
-            display: "block",
-            y: 0,
-            opacity: 1
-          }
-      );
-    }
-  }, [loaded])
+  
 
   const compareDates = (date : string) => {
     const _date = new Date();
@@ -109,17 +88,17 @@ const Protege = (props: Props) => {
   return (
       <div className="patron">
         {loaded && (
-            <div className="patron--container" style={{display: "none"}} ref={containerRef}>
+            <div className="patron--container">
               {
                 !equalDate && (
-                  <Exam loadedHandler={setLoaded}/>
-                )
+                        <Exam loadedHandler={setLoaded}/>
+                      )
               }
               {
                 equalDate && (
                     <div className="exam--send-info">
                       <div style={{width: "100%", height: "20em", position: "relative"}}>
-                        <h3 style={{color: "white", fontSize: "48px", position: "absolute", left: "50%", top: "50%", fontWeight: "bold", transform: "translate(-50%, -50%)"}}>WRÓĆ JUTRO</h3>
+                        <h3 style={{color: "white", fontSize: "48px", textAlign: "center", position: "absolute", left: "50%", top: "50%", fontWeight: "bold", transform: "translate(-50%, -50%)"}}>TO JUŻ WSZYSTKO NA DZISIAJ.<br/>WRÓĆ JUTRO!</h3>
                       </div>
                     </div>
                 )
@@ -127,7 +106,26 @@ const Protege = (props: Props) => {
             </div>
         )}
         {!loaded && (
-            <Spinner animation="border" variant="success" style={{position: "fixed", top: "50%", left: "50%", transform: "translate(-50%, -50%)"}}/>
+            <Button
+            variant="success"
+            style={{
+              position: "relative",
+              left: "50%",
+              top: "50%",
+              transform: "translate(-50%, -50%)",
+              borderRadius: "0"
+            }}
+            disabled
+          >
+            <Spinner
+              as="span"
+              animation="grow"
+              size="sm"
+              role="status"
+              aria-hidden="true"
+            />
+            Loading...
+          </Button>
         )}
         {!modalShownAtSession && (
             <Modal
@@ -136,21 +134,20 @@ const Protege = (props: Props) => {
                 aria-labelledby="contained-modal-title-vcenter"
                 centered
             >
-              <Modal.Header>
-                <Modal.Title id="contained-modal-title-vcenter" style={{color: "rgba(0,0,0,0.8)"}}>
+              <Modal.Header style={{backgroundColor: "#292930", borderRadius: "0"}}>
+                <Modal.Title id="contained-modal-title-vcenter" style={{color: "rgba(255, 255, 255, 0.8)"}}>
                   Informacja
                 </Modal.Title>
               </Modal.Header>
-              <Modal.Body>
+              <Modal.Body style={{borderRadius: "0"}}>
                 <p style={{color: "rgba(0,0,0,0.67)"}}>
-                  Upewnij się, że wszystkie wprowadzone dane są zgodne ze stanem faktycznym.
-                  Aplikacja ta ma za zadanie pomóc w utrzymaniu diety. Pierwszym krokiem ku temu celowi jest bycie uczciwym przed samym sobą,
-                  co wiąże się również z uczciwością względem dietetyka. Proszę być spokojnym, w aktualnym świecie, Twoje liczby nikogo nie zszokują.
-                  Po zatwierdzeniu danych, nie będzie możliwości ich edycji.
+                  Upewnij się, że wszystkie wprowadzone dane są zgodne ze stanem faktycznym.<br/>
+                  Pamiętaj również, aby nie manipulować otrzymanymi danymi. Twoje liczby nikogo nie zszokują.
                 </p>
               </Modal.Body>
               <Modal.Footer>
-                <Button variant="success" onClick={hideModal}>Rozumiem</Button>
+                <Button variant="secondary" style={{borderRadius: "0"}} onClick={hideModal}>Wyjdź</Button>
+                <Button variant="success" style={{borderRadius: "0"}} onClick={hideModal}>Rozumiem</Button>
               </Modal.Footer>
             </Modal>
         )}
