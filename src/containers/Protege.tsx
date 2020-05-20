@@ -1,16 +1,20 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Spinner, Modal, Button, Table } from "react-bootstrap";
+import { FaUsers } from "react-icons/fa";
+import { GiExitDoor } from "react-icons/gi";
 import Exam from "./../components/Forms/Exam";
 
 import "core-js";
 
 interface Props {
   userID: string;
+  logOut(): void;
 }
 
 const Protege = (props: Props) => {
   const [loaded, setLoaded] = useState<boolean>(false);
   const [examDateData, setExamDateData] = useState<any>([]);
+  const [name, setName] = useState<any>([]);
   const token = localStorage.getItem("token");
   const [examDate, setExamDate] = useState("");
   const [weeklyExamsData, setWeeklyExamsData] = useState<any>([]);
@@ -35,6 +39,19 @@ const Protege = (props: Props) => {
     })
       .then((res) => res.json())
       .then((res) => setExamDateData(res))
+      .catch((error) => error);
+  };
+
+  const getName = () => {
+    fetch(`https://opqn-api.herokuapp.com/protege-data`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `${token}`,
+      },
+    })
+      .then((res) => res.json())
+      .then((res) => setName(res))
       .catch((error) => error);
   };
 
@@ -65,20 +82,20 @@ const Protege = (props: Props) => {
   }, [equalDate, loaded]);
 
   useEffect(() => {
+    getName();
+  }, []);
+
+  useEffect(() => {
     if (examDateData) {
       examDateData.map((element) => {
         setExamDate(element.date);
       });
     }
 
-    if (examDate) {
-      const sameDate = compareDates(examDate);
-      sameDate === 0 ? setEqualDate(true) : setEqualDate(false);
-      setLoaded(true);
-    }
-
-    console.log(weeklyExamsData);
-    console.log(examDateData);
+    // if(examDate)
+    const sameDate = compareDates(examDate);
+    sameDate === 0 ? setEqualDate(true) : setEqualDate(false);
+    setLoaded(true);
   }, [examDateData, examDate, equalDate, weeklyExamsData]);
 
   const compareDates = (date: string) => {
@@ -104,6 +121,42 @@ const Protege = (props: Props) => {
     <div className="patron">
       {loaded && (
         <div className="patron--container">
+          <button
+            style={{
+              position: "absolute",
+              right: "0%",
+              border: "none",
+              backgroundColor: "transparent",
+              color: "rgba(0, 0, 0, 0.67)",
+              fontSize: "1rem",
+            }}
+            onClick={props.logOut}
+          >
+            Wyloguj
+            <GiExitDoor style={{ color: "rgba(0, 0, 0, .67)" }} size={32} />
+          </button>
+          <div
+            style={{
+              width: "5em",
+              position: "relative",
+              marginTop: "1em",
+              height: "5em",
+              left: "calc(50% - 2.5em)",
+            }}
+          >
+            <FaUsers size={80} style={{ color: "rgba(0, 0, 0, .17)" }} />
+          </div>
+          <h1
+            className="protege--name"
+            style={{
+              textAlign: "center",
+              marginTop: ".2em",
+              marginBottom: "1em",
+              borderBottom: "3px solid rgba(0, 0, 0, .17)",
+            }}
+          >
+            {name.firstname} {name.lastname}
+          </h1>
           {!equalDate && <Exam loadedHandler={setLoaded} />}
           {equalDate && (
             <div className="exam--send-info">
@@ -130,40 +183,68 @@ const Protege = (props: Props) => {
             </div>
           )}
           {weeklyExamsData && (
-            <Table
-              bordered
-              hover
-              variant="secondary"
-              style={{
-                position: "relative",
-                width: "80%",
-                left: "10%",
-                margin: "2em",
-              }}
-            >
-              <thead>
-                <tr style={{backgroundColor: "#5cb85c", color: "rgba(255, 255, 255, 1)", textAlign: "center"}}>
-                  <th>Data</th>
-                  <th>Waga</th>
-                  <th>Glukoza</th>
-                  <th>Ciśnienie</th>
-                </tr>
-              </thead>
-              <tbody>
-                  {
-                    weeklyExamsData.map(data => {
+            <>
+              <h1
+                style={{
+                  position: "relative",
+                  left: "10%",
+                  marginTop: "1em",
+                  width: "30%",
+                  color: "rgba(0, 0, 0, 0.67)",
+                  borderBottom: "3px solid rgba(0, 0, 0, .17)",
+                }}
+              >
+                Lista badań
+              </h1>
+              <div
+                className="protege--table"
+                style={{
+                  position: "relative",
+                  width: "80%",
+                  left: "10%",
+                  marginBottom: "2em",
+                  borderRadius: "10px",
+                  backgroundColor: "#ffffff",
+                  padding: "1em",
+                }}
+              >
+                <Table>
+                  <thead style={{ backgroundColor: "#d8d8d8" }}>
+                    <tr
+                      style={{
+                        color: "rgba(0, 0, 0, .87)",
+                        textAlign: "center",
+                      }}
+                    >
+                      <th>Data</th>
+                      <th>Waga</th>
+                      <th>Glukoza</th>
+                      <th>Ciśnienie</th>
+                    </tr>
+                  </thead>
+                  <tbody className="table--body">
+                    {weeklyExamsData.map((data) => {
                       return (
-                        <tr onClick={() => alert(data.id)} style={{backgroundColor: "#ffffff", textAlign: "center", color: "rgba(0, 0, 0, 0.6)"}}>
-                          <td style={{width: "25%"}}>{data.date.substring(0, 10)}</td>
-                          <td style={{width: "25%"}}>{data.weight}</td>
-                          <td style={{width: "25%"}}>{data.glucose}</td>
-                          <td style={{width: "25%"}}>{data.pressure}</td>
+                        <tr
+                          style={{
+                            backgroundColor: "#ffffff",
+                            textAlign: "center",
+                            color: "rgba(0, 0, 0, 0.6)",
+                          }}
+                        >
+                          <td style={{ width: "25%" }}>
+                            {data.date.substring(0, 10)}
+                          </td>
+                          <td style={{ width: "25%" }}>{data.weight}</td>
+                          <td style={{ width: "25%" }}>{data.glucose}</td>
+                          <td style={{ width: "25%" }}>{data.pressure}</td>
                         </tr>
-                      )
-                    })
-                  }
-              </tbody>
-            </Table>
+                      );
+                    })}
+                  </tbody>
+                </Table>
+              </div>
+            </>
           )}
         </div>
       )}

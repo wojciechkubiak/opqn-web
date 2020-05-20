@@ -1,11 +1,14 @@
 $box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4), 0 6px 20px 0 rgba(0, 0, 0, 0.3);
 $box-shadow-light: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 10px 0 rgba(0, 0, 0, 0.2);
+$border-radius-sm: 10px !important;
+$border-radius-md: 14px !important;
+$border-radius-lg: 20px !important;
 
 html { 
-  background-size: cover;
-  height: auto;
-  width: 100%;
   font-family: 'Merriweather Sans', sans-serif !important;
+  background-color: #f3f3f3;
+  width: 100%;
+  height: 100%;
 }
 
 body {
@@ -91,7 +94,6 @@ body {
 .login--form-ctrl, .exam--form-ctrl {
   background-color: #d8d8d8 !important;
   color: rgba(0, 0, 0, 0.60) !important;
-  text-align: center
 }
 
 .form-label {
@@ -233,11 +235,7 @@ body {
 
 .patron {
   position: absolute;
-  background: url("./img/bg.webp") no-repeat center center fixed; 
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
+  background-color: #f3f3f3;
   width: 100%;
   height: 100%;
 }
@@ -255,16 +253,18 @@ body {
   height: auto;
   background-color: #5cb85c;
   margin-top: 1em;
-  box-shadow: $box-shadow;
+  box-shadow: $box-shadow-light;
+  border-radius: $border-radius-md;
 }
 
 .exam--form {
   width: 60%;
   position: relative;
   background-color: #ffffff;
-  box-shadow: $box-shadow;
+  box-shadow: $box-shadow-light;
   left: 20%;
   margin-top: 1em;
+  border-radius: $border-radius-md;
 }
 
 .exam--form-group {
@@ -277,8 +277,38 @@ body {
 .exam--form-btn {
   width: 100%;
   border-radius: 0 !important;
+  border-bottom-left-radius: $border-radius-sm;
+  border-bottom-right-radius: $border-radius-sm;
 }
 
 .modal-content {
   border-radius: 0 !important
+}
+
+.exam--form-label {
+  text-align: left !important;
+  margin-left: 5px;
+  color: rgba(0, 0, 0, .67);
+}
+
+input {
+  color: rgba(0, 0, 0, 0.67);
+  text-align: center !important;
+}
+
+.exam--form-ctrl {
+  text-align: center !important
+}
+
+.protege--table {
+  box-shadow: $box-shadow-light;
+
+}
+
+.protege--name {
+  width: 30%;
+  color: rgba(0, 0, 0, 0.67);
+  position: relative;
+  left: 50%;
+  transform: translate(-50%, 0%);
 }

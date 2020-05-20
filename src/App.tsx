@@ -15,7 +15,7 @@ import "./App.scss";
 const App: React.FC = () => {
   const [loggedIn, setLoggedIn] = useState(false);
   const [mode, setMode] = useState(
-    localStorage.getItem("mode") === "patron" ? false : true 
+    localStorage.getItem("mode") === "patron" ? false : true
   );
   const [showRegister, setShowRegister] = useState(false);
   const [regMode, setRegMode] = useState("");
@@ -46,14 +46,14 @@ const App: React.FC = () => {
       setShowProtege(false);
     }
 
-    console.log(showPatron, showProtege)
+    console.log(showPatron, showProtege);
   }, [log, loggedIn, showPatron, showProtege]);
 
   useEffect(() => {
     const lastLogDate = localStorage.getItem("logDate") || Date.now();
-    const diff = Date.now() - +(new Date(lastLogDate));
-    
-    if(diff >= 172800000) {
+    const diff = Date.now() - +new Date(lastLogDate);
+
+    if (diff >= 172800000) {
       localStorage.clear();
     }
   }, []);
@@ -80,6 +80,14 @@ const App: React.FC = () => {
 
   const userHandler = (id: string) => {
     setUserID(id);
+  };
+
+  const logOut = () => {
+    localStorage.clear();
+    setLoggedIn(false);
+    setShowRegister(false);
+    setShowPatron(false);
+    setShowProtege(false);
   }
 
   return (
@@ -100,9 +108,8 @@ const App: React.FC = () => {
           regSuccess={regSuccessHandler}
         />
       )}
-      {showPatron && <Patron userID={userID}/>}
-
-      {showProtege && <Protege userID={userID}/>}
+      {showPatron && <Patron userID={userID} />}
+      {showProtege && <Protege userID={userID} logOut={logOut}/>}
     </div>
   );
 };

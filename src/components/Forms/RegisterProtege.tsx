@@ -159,7 +159,7 @@ const RegisterProtege = (props: Props) => {
         />
       </Form.Group>
       <Form.Group className="login--form-group">
-        <Form.Label className="login--form-label">Data zakupu</Form.Label>
+        <Form.Label className="login--form-label">Data urodzenia</Form.Label>
         <DatePicker
           className="login--form-datepicker"
           locale="pl"

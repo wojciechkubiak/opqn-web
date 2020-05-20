@@ -8,7 +8,28 @@ interface Props {
 const Patron = (props: Props) => {
   let containerRef = useRef<HTMLDivElement>(null);
   const [userID, setUserID] = useState("");
-  
+  const [proteges, setProteges] = useState<any>([]);
+  const [loaded, setLoaded] = useState<boolean>(false);
+  const token = localStorage.getItem("token");
+
+  const getData = () => {
+    console.log("Getting data");
+    fetch(`https://opqn-api.herokuapp.com/patron-proteges`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `${token}`,
+      },
+    })
+      .then((res) => res.json())
+      .then((res) => setProteges(res))
+      .catch((error) => error);
+
+      setTimeout(() => {
+        setLoaded(true); 
+      }, 2000)
+  };
+
   useEffect(() => {
     gsap.fromTo(
       containerRef.current,
@@ -30,6 +51,12 @@ const Patron = (props: Props) => {
     }
     console.log(userID);
   })
+
+  useEffect(() => {
+    getData();
+
+    console.log(proteges);
+  }, [loaded]);
 
   return (
     <div className="patron">
