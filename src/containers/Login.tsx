@@ -164,7 +164,6 @@ const Login = (props: Props) => {
       {showOptions && (
         <>
           <h1 className="login--header">TYP KONTA</h1>
-
           <div className="options" ref={optionsRef} style={{display: "none"}}>
             <Button
               className="options--btn-back"

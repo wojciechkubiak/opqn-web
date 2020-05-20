@@ -300,7 +300,7 @@ const Protege = (props: Props) => {
             <Button
               variant="secondary"
               style={{ borderRadius: "0" }}
-              onClick={hideModal}
+              onClick={props.logOut}
             >
               Wyjdź
             </Button>
