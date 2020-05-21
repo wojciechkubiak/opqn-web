@@ -125,7 +125,7 @@ const Exam = (props: Props) => {
             Badanie
           </h2>
           <Row>
-            <Col>
+            {/* <Col>
               <Form.Label className="exam--form-label">Data badania</Form.Label>
               <DatePicker
                 className="exam--form-datepicker"
@@ -133,7 +133,7 @@ const Exam = (props: Props) => {
                 selected={examDate}
                 onChange={(date) => setExamDate(date)}
               />
-            </Col>
+            </Col> */}
             <Col>
               <Form.Label className="exam--form-label">Waga</Form.Label>
               <figure>

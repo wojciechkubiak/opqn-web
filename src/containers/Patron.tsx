@@ -56,6 +56,9 @@ const Patron = (props: Props) => {
     getData();
 
     console.log(proteges);
+    proteges.forEach(element => {
+     console.log(element)
+    })
   }, [loaded]);
 
   return (
