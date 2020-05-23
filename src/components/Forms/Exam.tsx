@@ -52,16 +52,16 @@ const Exam = (props: Props) => {
     event.preventDefault();
     const token = localStorage.getItem("token");
 
-    if (Number(weight) > 30 && Number(weight) < 450) {
+    if (Number(weight) >= 30 && Number(weight) <= 450) {
       setWrongWeight({});
       setShowWeightFig(false);
-      if (Number(glucose) > 85 && Number(glucose) < 145) {
+      if (Number(glucose) >= 30 && Number(glucose) <= 150) {
         setWrongGlucose({});
         setShowGlucoseFig(false);
-        if (Number(firstPressure) > 0 && Number(firstPressure) < 200) {
+        if (Number(firstPressure) >= 55 && Number(firstPressure) <= 200) {
           setWrongFirstPressure({});
           setShowFirstPressureFig(false);
-          if (Number(secondPressure) > 0 && Number(secondPressure) < 120) {
+          if (Number(secondPressure) >= 50 && Number(secondPressure) <= 120) {
             setWrongSecondPressure({});
             setShowSecondPressureFig(false);
 
@@ -125,15 +125,6 @@ const Exam = (props: Props) => {
             Badanie
           </h2>
           <Row>
-            {/* <Col>
-              <Form.Label className="exam--form-label">Data badania</Form.Label>
-              <DatePicker
-                className="exam--form-datepicker"
-                locale="pl"
-                selected={examDate}
-                onChange={(date) => setExamDate(date)}
-              />
-            </Col> */}
             <Col>
               <Form.Label className="exam--form-label">Waga</Form.Label>
               <figure>
@@ -141,6 +132,8 @@ const Exam = (props: Props) => {
                   className="exam--form-ctrl"
                   style={wrongWeight}
                   type="number"
+                  min="30"
+                  max="450"
                   placeholder="Wpisz aktualną wagę"
                   required
                   onChange={(event) => {
@@ -163,6 +156,8 @@ const Exam = (props: Props) => {
                   className="exam--form-ctrl"
                   type="number"
                   style={wrongGlucose}
+                  min="30"
+                  max="150"
                   placeholder="Wpisz poziom glukozy"
                   required
                   onChange={(event) => {
@@ -192,6 +187,8 @@ const Exam = (props: Props) => {
                   type="number"
                   style={wrongFirstPressure}
                   placeholder="Wpisz tętnicze"
+                  min="55"
+                  max="200"
                   required
                   onChange={(event) => {
                     setFirstPressure(event.target.value);
@@ -215,6 +212,8 @@ const Exam = (props: Props) => {
                   className="exam--form-ctrl"
                   type="number"
                   style={wrongSecondPressure}
+                  min="50"
+                  max="120"
                   placeholder="Ciśnienie skurczowe"
                   required
                   onChange={(event) => {

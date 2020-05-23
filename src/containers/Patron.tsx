@@ -1,5 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import SignProtege from "./../components/Forms/SignProtege";
+import { Button } from "react-bootstrap";
+import { IoMdPersonAdd } from "react-icons/io";
 import { gsap } from "gsap";
 
 interface Props {
@@ -8,7 +10,6 @@ interface Props {
 
 const Patron = (props: Props) => {
   let containerRef = useRef<HTMLDivElement>(null);
-  const [userID, setUserID] = useState("");
   const [proteges, setProteges] = useState<any>([]);
   const [loaded, setLoaded] = useState<boolean>(false);
   const [showSignin, setShowSignin] = useState(false);
@@ -46,13 +47,6 @@ const Patron = (props: Props) => {
     );
   }, []);
 
-  useEffect(() => {
-    const id = localStorage.getItem("id");
-    if(id) {
-      setUserID(id);
-    }
-    console.log(userID);
-  })
 
   useEffect(() => {
     getData();
@@ -67,11 +61,13 @@ const Patron = (props: Props) => {
   const hideSigninHandler = () => setShowSignin(false);
 
   return (
-    <div className="patron">
+    <div className="protege">
       <div className="patron--container" ref={containerRef}>
         <h1>Patron {props.userID}</h1>
       </div>
-      <button  style={{position: "fixed", right: "48px", bottom: "48px"}} onClick={showSigninHandler}>Dodaj</button>
+      {!showSignin && (
+          <Button variant="success" style={{position: "fixed", right: "calc(10% - 36px)", bottom: "48px", width: "72px", height: "72px", borderRadius: "50%"}} onClick={showSigninHandler}><IoMdPersonAdd size={32}/></Button>
+      )}
       {
         showSignin && (
             <SignProtege hide={hideSigninHandler}/>

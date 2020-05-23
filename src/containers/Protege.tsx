@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Spinner, Modal, Button, Table } from "react-bootstrap";
 import { FaUsers } from "react-icons/fa";
-import { GiExitDoor } from "react-icons/gi";
+import { IoMdExit } from "react-icons/io";
 import Exam from "./../components/Forms/Exam";
 
 import "core-js";
@@ -121,20 +121,6 @@ const Protege = (props: Props) => {
     <div className="patron">
       {loaded && (
         <div className="patron--container">
-          <button
-            style={{
-              position: "absolute",
-              right: "0%",
-              border: "none",
-              backgroundColor: "transparent",
-              color: "rgba(0, 0, 0, 0.67)",
-              fontSize: "1rem",
-            }}
-            onClick={props.logOut}
-          >
-            Wyloguj
-            <GiExitDoor style={{ color: "rgba(0, 0, 0, .67)" }} size={32} />
-          </button>
           <div
             style={{
               width: "5em",
@@ -151,12 +137,28 @@ const Protege = (props: Props) => {
             style={{
               textAlign: "center",
               marginTop: ".2em",
-              marginBottom: "1em",
               borderBottom: "3px solid rgba(0, 0, 0, .17)",
             }}
           >
             {name.firstname} {name.lastname}
           </h1>
+          <button
+              style={{
+                position: "relative",
+                left: "50%",
+                transform: "translate(-50%, 0%)",
+                border: "none",
+                backgroundColor: "transparent",
+                color: "rgba(0, 0, 0, 0.67)",
+                fontSize: "auto",
+                textAlign: "center",
+                marginBottom: ".5em"
+              }}
+              onClick={props.logOut}
+          >
+            Wyloguj
+            <IoMdExit style={{ color: "rgba(0, 0, 0, .67)" }} size={32} />
+          </button>
           {!equalDate && <Exam loadedHandler={setLoaded} />}
           {equalDate && (
             <div className="exam--send-info">

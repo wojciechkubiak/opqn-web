@@ -18,7 +18,6 @@ const RegisterProtege = (props: Props) => {
         setSignin(true);
         const token = localStorage.getItem("token");
 
-        console.log(data);
         fetch(`https://opqn-api.herokuapp.com/sign-protege`, {
             method: "PUT",
             headers: {
@@ -27,16 +26,21 @@ const RegisterProtege = (props: Props) => {
             },
             body: JSON.stringify(data),
         })
-            .then((response) => response.json())
-            .then((data) => {
-                console.log("Success", data);
+        .then((response) => response.json())
+        .then((data) => {
+            if(data.status[0]) {
+                console.log("Success")
                 props.hide();
-            })
-            .catch((error) => {
-                alert("Błędny numer telefonu");
+            } else {
+                alert("Użytkownik lub przypisany, bądź wprowadzono zły numer telefonu");
                 setSignin(false);
-                console.error("Error", error);
-            });
+            }
+        })
+        .catch((error) => {
+            alert("Błędny numer telefonu");
+            setSignin(false);
+            console.error("Error", error);
+        });
     };
 
     const data = useMemo(
@@ -73,7 +77,7 @@ const RegisterProtege = (props: Props) => {
                     size="lg"
                     type="submit"
                 >
-                    ZAREJESTRUJ
+                    DODAJ
                 </Button>
             )}
             {signin && (
@@ -85,7 +89,7 @@ const RegisterProtege = (props: Props) => {
                         role="status"
                         aria-hidden="true"
                     />
-                    Rejestracja...
+                    PRÓBA DODANIA...
                 </Button>
             )}
         </Form>
