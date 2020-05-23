@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
+import SignProtege from "./../components/Forms/SignProtege";
 import { gsap } from "gsap";
 
 interface Props {
@@ -10,6 +11,7 @@ const Patron = (props: Props) => {
   const [userID, setUserID] = useState("");
   const [proteges, setProteges] = useState<any>([]);
   const [loaded, setLoaded] = useState<boolean>(false);
+  const [showSignin, setShowSignin] = useState(false);
   const token = localStorage.getItem("token");
 
   const getData = () => {
@@ -61,11 +63,20 @@ const Patron = (props: Props) => {
     })
   }, [loaded]);
 
+  const showSigninHandler = () => setShowSignin(true);
+  const hideSigninHandler = () => setShowSignin(false);
+
   return (
     <div className="patron">
       <div className="patron--container" ref={containerRef}>
         <h1>Patron {props.userID}</h1>
       </div>
+      <button  style={{position: "fixed", right: "48px", bottom: "48px"}} onClick={showSigninHandler}>Dodaj</button>
+      {
+        showSignin && (
+            <SignProtege hide={hideSigninHandler}/>
+        )
+      }
     </div>
   );
 };
