@@ -130,14 +130,14 @@ const Protege = (props: Props) => {
               left: "calc(50% - 2.5em)",
             }}
           >
-            <FaUsers size={80} style={{ color: "rgba(0, 0, 0, .17)" }} />
+            <FaUsers size={80} style={{ color: "rgba(255, 255, 255, .17)" }} />
           </div>
           <h1
             className="protege--name"
             style={{
               textAlign: "center",
               marginTop: ".2em",
-              borderBottom: "3px solid rgba(0, 0, 0, .17)",
+              borderBottom: "3px solid rgba(255, 255, 255, .17)",
             }}
           >
             {name.firstname} {name.lastname}
@@ -149,7 +149,7 @@ const Protege = (props: Props) => {
                 transform: "translate(-50%, 0%)",
                 border: "none",
                 backgroundColor: "transparent",
-                color: "rgba(0, 0, 0, 0.67)",
+                color: "rgba(255, 255, 255, 0.67)",
                 fontSize: "auto",
                 textAlign: "center",
                 marginBottom: ".5em"
@@ -157,7 +157,7 @@ const Protege = (props: Props) => {
               onClick={props.logOut}
           >
             Wyloguj
-            <IoMdExit style={{ color: "rgba(0, 0, 0, .67)" }} size={32} />
+            <IoMdExit style={{ color: "rgba(255, 255, 255, .67)" }} size={32} />
           </button>
           {!equalDate && <Exam loadedHandler={setLoaded} />}
           {equalDate && (
@@ -192,8 +192,8 @@ const Protege = (props: Props) => {
                   left: "10%",
                   marginTop: "1em",
                   width: "30%",
-                  color: "rgba(0, 0, 0, 0.67)",
-                  borderBottom: "3px solid rgba(0, 0, 0, .17)",
+                  color: "rgba(255, 255, 255, 0.67)",
+                  borderBottom: "3px solid rgba(255, 255, 255, .17)",
                 }}
               >
                 Lista badań
@@ -206,15 +206,15 @@ const Protege = (props: Props) => {
                   left: "10%",
                   marginBottom: "2em",
                   borderRadius: "10px",
-                  backgroundColor: "#ffffff",
+                  backgroundColor: "#292930",
                   padding: "1em",
                 }}
               >
-                <Table>
-                  <thead style={{ backgroundColor: "#d8d8d8" }}>
+                <Table variant="dark">
+                  <thead style={{ backgroundColor: "#292930" }}>
                     <tr
                       style={{
-                        color: "rgba(0, 0, 0, .87)",
+                        color: "rgba(255, 255, 255, .87)",
                         textAlign: "center",
                       }}
                     >
@@ -229,9 +229,10 @@ const Protege = (props: Props) => {
                       return (
                         <tr
                           style={{
-                            backgroundColor: "#ffffff",
+                            backgroundColor: "#292930",
+                            borderBottom: "none",
                             textAlign: "center",
-                            color: "rgba(0, 0, 0, 0.6)",
+                            color: "rgba(255, 255, 255, 0.6)",
                           }}
                         >
                           <td style={{ width: "25%" }}>
@@ -280,7 +281,7 @@ const Protege = (props: Props) => {
           centered
         >
           <Modal.Header
-            style={{ backgroundColor: "#292930", borderRadius: "0" }}
+            style={{ backgroundColor: "#292930", borderRadius: "0", border: "none" }}
           >
             <Modal.Title
               id="contained-modal-title-vcenter"
@@ -289,8 +290,8 @@ const Protege = (props: Props) => {
               Informacja
             </Modal.Title>
           </Modal.Header>
-          <Modal.Body style={{ borderRadius: "0" }}>
-            <p style={{ color: "rgba(0,0,0,0.67)" }}>
+          <Modal.Body style={{  backgroundColor: "#292930", borderRadius: "0" }}>
+            <p style={{ color: "rgba(255, 255, 255, 0.67)" }}>
               Upewnij się, że wszystkie wprowadzone dane są zgodne ze stanem
               faktycznym.
               <br />
@@ -298,7 +299,7 @@ const Protege = (props: Props) => {
               liczby nikogo nie zszokują.
             </p>
           </Modal.Body>
-          <Modal.Footer>
+          <Modal.Footer style={{  backgroundColor: "#292930", borderRadius: "0" }}>
             <Button
               variant="secondary"
               style={{ borderRadius: "0" }}

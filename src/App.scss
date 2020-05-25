@@ -6,7 +6,7 @@ $border-radius-lg: 20px !important;
 
 html { 
   font-family: 'Merriweather Sans', sans-serif !important;
-  background-color: #f3f3f3;
+  background-color: #292930;
   width: 100%;
   height: 100%;
 }
@@ -92,8 +92,11 @@ body {
 }
 
 .login--form-ctrl, .exam--form-ctrl {
-  background-color: #d8d8d8 !important;
-  color: rgba(0, 0, 0, 0.60) !important;
+  background-color: #292930 !important;
+  color: rgba(255, 255, 255, 0.60) !important;
+  border: none !important;
+  border-radius: 0 !important;
+  border-bottom: 1px solid rgb(226, 226, 226) !important;
 }
 
 .form-label {
@@ -234,8 +237,11 @@ body {
 }
 
 .patron {
-  position: absolute;
-  background-color: #f3f3f3;
+  background: url("./img/bg.webp") no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
   width: 100%;
   height: 100%;
 }
@@ -260,8 +266,8 @@ body {
 .exam--form {
   width: 60%;
   position: relative;
-  background-color: #ffffff;
-  box-shadow: $box-shadow-light;
+  background-color: #292930;
+  box-shadow: $box-shadow;
   left: 20%;
   margin-top: 1em;
   border-radius: $border-radius-md;
@@ -288,7 +294,7 @@ body {
 .exam--form-label {
   text-align: left !important;
   margin-left: 5px;
-  color: rgba(0, 0, 0, .67);
+  color: rgba(255, 255, 255, .67);
 }
 
 input {
@@ -301,13 +307,13 @@ input {
 }
 
 .protege--table {
-  box-shadow: $box-shadow-light;
+  box-shadow: $box-shadow;
 
 }
 
 .protege--name {
   width: 30%;
-  color: rgba(0, 0, 0, 0.67);
+  color: rgba(255, 255, 255, 0.67);
   position: relative;
   left: 50%;
   transform: translate(-50%, 0%);

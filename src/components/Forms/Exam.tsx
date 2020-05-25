@@ -118,7 +118,7 @@ const Exam = (props: Props) => {
               textAlign: "left",
               marginTop: "10px",
               marginBottom: "48px",
-              color: "rgba(0, 0, 0, 0.67)",
+              color: "rgba(255, 255, 255, 0.67)",
               borderBottom: "2px solid rgba(0, 0, 0, .17)",
             }}
           >
