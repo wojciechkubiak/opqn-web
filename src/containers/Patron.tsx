@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import SignProtege from "./../components/Forms/SignProtege";
 import { Button } from "react-bootstrap";
 import { IoMdPersonAdd } from "react-icons/io";
+import Card from "./../components/Cards/Card";
 import { gsap } from "gsap";
 
 interface Props {
@@ -61,12 +62,18 @@ const Patron = (props: Props) => {
   const hideSigninHandler = () => setShowSignin(false);
 
   return (
-    <div className="protege">
-      <div className="patron--container" ref={containerRef}>
-        <h1>Patron {props.userID}</h1>
+    <div className="patron">
+      <div className="container" ref={containerRef}>
+         <div className="patron--cards" style={{width: "100%", left: "0%", position: "relative", display: "flex", flexDirection: "row", flexWrap: "wrap"}}>
+           <Card firstname="Wojtek" lastname="Kubiak" date="12-04-2020" weight="120" glucose="119" pressure="119/75" mail="wgkubiak@gmail.com" phone="+48 726 823 405"/>
+           <Card firstname="Wojtek" lastname="Kubiak" date="12-04-2020" weight="120" glucose="119" pressure="119/75" mail="wgkubiak@gmail.com" phone="+48 726 823 405"/>
+           <Card firstname="Wojtek" lastname="Kubiak" date="12-04-2020" weight="120" glucose="119" pressure="119/75" mail="wgkubiak@gmail.com" phone="+48 726 823 405"/>
+           <Card firstname="Wojtek" lastname="Kubiak" date="12-04-2020" weight="120" glucose="119" pressure="119/75" mail="wgkubiak@gmail.com" phone="+48 726 823 405"/>
+           <Card firstname="Wojtek" lastname="Kubiak" date="12-04-2020" weight="120" glucose="119" pressure="119/75" mail="wgkubiak@gmail.com" phone="+48 726 823 405"/>
+         </div>
       </div>
       {!showSignin && (
-          <Button variant="success" style={{position: "fixed", right: "calc(10% - 36px)", bottom: "48px", width: "72px", height: "72px", borderRadius: "50%"}} onClick={showSigninHandler}><IoMdPersonAdd size={32}/></Button>
+          <Button variant="success" style={{position: "fixed", right: "48px", bottom: "48px", width: "72px", height: "72px", borderRadius: "50%"}} onClick={showSigninHandler}><IoMdPersonAdd size={32}/></Button>
       )}
       {
         showSignin && (
