@@ -4,9 +4,11 @@ import { Button } from "react-bootstrap";
 import { IoMdPersonAdd } from "react-icons/io";
 import Card from "./../components/Cards/Card";
 import { gsap } from "gsap";
+import Logout from "../components/Button/Logout";
 
 interface Props {
-  userID: string
+  userID: string,
+  logOut(): void;
 }
 
 const Patron = (props: Props) => {
@@ -63,6 +65,7 @@ const Patron = (props: Props) => {
 
   return (
     <div className="patron">
+      <Logout logOut={props.logOut}/>
       <div className="container" ref={containerRef}>
          <div className="patron--cards" style={{width: "100%", left: "0%", position: "relative", display: "flex", flexDirection: "row", flexWrap: "wrap"}}>
            <Card firstname="Wojtek" lastname="Kubiak" date="12-04-2020" weight="120" glucose="119" pressure="119/75" mail="wgkubiak@gmail.com" phone="+48 726 823 405"/>
@@ -73,7 +76,7 @@ const Patron = (props: Props) => {
          </div>
       </div>
       {!showSignin && (
-          <Button variant="success" style={{position: "fixed", right: "48px", bottom: "48px", width: "72px", height: "72px", borderRadius: "50%"}} onClick={showSigninHandler}><IoMdPersonAdd size={32}/></Button>
+          <Button variant="success" className="patron--sign-protege-btn" style={{position: "fixed", right: "48px", bottom: "48px", width: "72px", height: "72px", borderRadius: "50%"}} onClick={showSigninHandler}><IoMdPersonAdd size={32}/></Button>
       )}
       {
         showSignin && (

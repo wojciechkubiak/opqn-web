@@ -108,7 +108,7 @@ const App: React.FC = () => {
           regSuccess={regSuccessHandler}
         />
       )}
-      {showPatron && <Patron userID={userID} />}
+      {showPatron && <Patron userID={userID} logOut={logOut}/>}
       {showProtege && <Protege userID={userID} logOut={logOut}/>}
     </div>
   );

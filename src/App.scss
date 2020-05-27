@@ -239,7 +239,11 @@ body {
 .patron {
   width: 100%;
   height: 100%;
-  background-color: #292930;
+  background: url("./img/bg.webp") no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
 }
 
 .patron--container {
@@ -324,4 +328,8 @@ input {
 
 .patron--card {
   box-shadow: $box-shadow-light;
+}
+
+.patron--sign-protege-btn {
+  box-shadow: $box-shadow;
 }

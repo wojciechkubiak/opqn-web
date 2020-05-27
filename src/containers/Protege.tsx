@@ -3,6 +3,7 @@ import { Spinner, Modal, Button, Table } from "react-bootstrap";
 import { FaUsers } from "react-icons/fa";
 import { IoMdExit } from "react-icons/io";
 import Exam from "./../components/Forms/Exam";
+import Logout from "./../components/Button/Logout";
 
 import "core-js";
 
@@ -142,23 +143,7 @@ const Protege = (props: Props) => {
           >
             {name.firstname} {name.lastname}
           </h1>
-          <button
-              style={{
-                position: "relative",
-                left: "50%",
-                transform: "translate(-50%, 0%)",
-                border: "none",
-                backgroundColor: "transparent",
-                color: "rgba(255, 255, 255, 0.67)",
-                fontSize: "auto",
-                textAlign: "center",
-                marginBottom: ".5em"
-              }}
-              onClick={props.logOut}
-          >
-            Wyloguj
-            <IoMdExit style={{ color: "rgba(255, 255, 255, .67)" }} size={32} />
-          </button>
+          <Logout logOut={props.logOut}/>
           {!equalDate && <Exam loadedHandler={setLoaded} />}
           {equalDate && (
             <div className="exam--send-info">
