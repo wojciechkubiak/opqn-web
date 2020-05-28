@@ -1,6 +1,5 @@
-import React, { useState, useMemo, useRef, useEffect} from "react";
+import React, { useState, useMemo} from "react";
 import { Button, Form, Spinner } from "react-bootstrap";
-import { useHistory } from "react-router-dom";
 import "react-phone-number-input/style.css";
 import PhoneInput from "react-phone-number-input";
 

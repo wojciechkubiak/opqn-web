@@ -1,10 +1,4 @@
 import React, { useState, useEffect } from "react";
-import {
-  useHistory,
-  BrowserRouter as Router,
-  Route,
-  NavLink,
-} from "react-router-dom";
 import Login from "./containers/Login";
 import Register from "./containers/Register";
 import Patron from "./containers/Patron";
@@ -19,14 +13,10 @@ const App: React.FC = () => {
   );
   const [showRegister, setShowRegister] = useState(false);
   const [regMode, setRegMode] = useState("");
-  const [logMode, setLogMode] = useState(false);
   const [showPatron, setShowPatron] = useState(false);
   const [showProtege, setShowProtege] = useState(false);
   const [userID, setUserID] = useState("");
-  const localMode = localStorage.getItem("mode");
-  const history = useHistory();
   const log = localStorage.getItem("token") ? true : false;
-  const routeToMainSite = () => history.push("/");
 
   const modeHandler = () => {
     setMode(!mode);
@@ -45,8 +35,6 @@ const App: React.FC = () => {
       setShowPatron(false);
       setShowProtege(false);
     }
-
-    console.log(showPatron, showProtege);
   }, [log, loggedIn, showPatron, showProtege]);
 
   useEffect(() => {

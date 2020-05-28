@@ -1,12 +1,6 @@
-import React, { MouseEvent, useMemo, useState, useEffect, useRef } from "react";
-import { Button, Form, Spinner, Modal, Row, Col } from "react-bootstrap";
-import DatePicker, { registerLocale } from "react-datepicker";
-import { gsap } from "gsap";
+import React, { useMemo, useState, useRef } from "react";
+import { Button, Form, Spinner, Row, Col } from "react-bootstrap";
 import "react-datepicker/dist/react-datepicker.css";
-import pl from "date-fns/locale/pl";
-import { FiFilePlus } from "react-icons/fi";
-
-registerLocale("pl", pl);
 
 interface Props {
   loadedHandler(reg: boolean): void;
@@ -17,7 +11,7 @@ const Exam = (props: Props) => {
   const [glucose, setGlucose] = useState<string>("");
   const [firstPressure, setFirstPressure] = useState<string>("");
   const [secondPressure, setSecondPressure] = useState<string>("");
-  const [examDate, setExamDate] = useState<Date | null>(new Date());
+  const examDate = new Date();
   const [showSpinner, setShowSpinner] = useState<boolean>(false);
   const [wrongWeight, setWrongWeight] = useState<Object>({});
   const [wrongGlucose, setWrongGlucose] = useState<Object>({});
@@ -31,10 +25,6 @@ const Exam = (props: Props) => {
   const [showSecondPressureFig, setShowSecondPressureFig] = useState<boolean>(
     false
   );
-  const [showForm, setShowForm] = useState(false);
-  const [value, setValue] = useState(false);
-
-  const showFormHandler = () => setValue(!value);
 
   let containerRef = useRef<HTMLFormElement>(null);
 

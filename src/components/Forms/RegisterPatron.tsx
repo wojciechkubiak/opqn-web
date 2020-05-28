@@ -1,6 +1,5 @@
 import React, { useState, useMemo, useRef, useEffect, MouseEvent } from "react";
 import { Button, Form, Spinner } from "react-bootstrap";
-import { useHistory } from "react-router-dom";
 import { gsap } from "gsap";
 
 interface Props {
@@ -16,8 +15,6 @@ const RegisterPatron = (props: Props) => {
   const [lastname, setLastname] = useState("");
   const [mail, setMail] = useState("");
   const [password, setPassword] = useState("");
-
-  const history = useHistory();
 
   useEffect(() => {
     gsap.fromTo(

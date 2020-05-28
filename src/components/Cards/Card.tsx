@@ -1,41 +1,21 @@
-import React, {useEffect, useState} from "react";
+import React from "react";
 import {Card as RbCard} from "react-bootstrap";
-import {AiFillPhone, AiFillMail} from "react-icons/ai";
+import CardBody from "./CardBody";
 
 interface Props {
     firstname: string,
     lastname: string,
-    date: string,
-    weight: string,
-    glucose: string,
-    pressure: string,
     phone: string,
-    mail: string
+    mail: string,
+    id: string,
+    loadedHandler(loaded: boolean): void
 }
 
 const Card = (props: Props) => {
+
     return (
         <RbCard className="patron--card" style={{ margin: "2%", width: "46%", backgroundColor: "#ffffff", border: "none", color: "rgba(0, 0, 0, 0.8)"}}>
-            <RbCard.Body>
-                <button style={{border: "none", backgroundColor: "transparent", position: "absolute", right: "2px", top: "2px", color: "rgba(0, 0, 0, 0.6)"}}>X</button>
-                <RbCard.Title style={{textAlign: "center"}}>{props.firstname} {props.lastname}</RbCard.Title>
-                <RbCard.Subtitle className="mb-2 text-muted" style={{textAlign: "center", marginBottom: "10px"}}>{props.date}</RbCard.Subtitle>
-                <RbCard.Text>
-                   Waga: {props.weight}
-                </RbCard.Text>
-                <RbCard.Text>
-                    Glukoza: {props.glucose}
-                </RbCard.Text>
-                <RbCard.Text>
-                    Ciśnienie: {props.pressure}
-                </RbCard.Text>
-                <RbCard.Text style={{textAlign: "right"}}>
-                    <AiFillPhone/> {props.phone}
-                </RbCard.Text>
-                <RbCard.Text style={{textAlign: "right"}}>
-                    <AiFillMail/> {props.mail}
-                </RbCard.Text>
-            </RbCard.Body>
+            <CardBody firstname={props.firstname} lastname={props.lastname} phone={props.phone} loadedHandler={props.loadedHandler} mail={props.mail} id={props.id}/>
         </RbCard>
     )
 }

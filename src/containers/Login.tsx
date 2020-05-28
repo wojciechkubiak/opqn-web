@@ -59,12 +59,6 @@ const Login = (props: Props) => {
   };
 
   useEffect(() => {
-    console.log(props.mode);
-    console.log(urlPart);
-  }, [props.mode]);
-
-
-  useEffect(() => {
     gsap.fromTo(
       optionsRef.current, {
           display: "none",
