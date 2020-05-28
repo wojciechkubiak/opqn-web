@@ -131,7 +131,7 @@ const Protege = (props: Props) => {
               left: "calc(50% - 2.5em)",
             }}
           >
-            <FaUsers size={80} style={{ color: "rgba(255, 255, 255, .17)" }} />
+            <FaUsers size={80} style={{ color: "rgba(255, 255, 255, .87)" }} />
           </div>
           <h1
             className="protege--name"
@@ -139,6 +139,7 @@ const Protege = (props: Props) => {
               textAlign: "center",
               marginTop: ".2em",
               borderBottom: "3px solid rgba(255, 255, 255, .17)",
+              color: "rgba(255, 255, 255, 0.87)"
             }}
           >
             {name.firstname} {name.lastname}
@@ -174,14 +175,17 @@ const Protege = (props: Props) => {
               <h1
                 style={{
                   position: "relative",
-                  left: "10%",
+                  left: "50%",
+                  transform: "translate(-50%, 0%)",
+                  textAlign: "center",
                   marginTop: "1em",
                   width: "30%",
-                  color: "rgba(255, 255, 255, 0.67)",
-                  borderBottom: "3px solid rgba(255, 255, 255, .17)",
+                  color: "rgba(255, 255, 255, 0.8)",
+                  padding: "10px",
+                  borderBottom: "3px solid rgba(108, 117, 125, .6)",
                 }}
               >
-                Lista badań
+                Spis badań
               </h1>
               <div
                 className="protege--table"
@@ -191,15 +195,15 @@ const Protege = (props: Props) => {
                   left: "10%",
                   marginBottom: "2em",
                   borderRadius: "10px",
-                  backgroundColor: "#292930",
+                  backgroundColor: "#f5f5f5",
                   padding: "1em",
                 }}
               >
-                <Table variant="dark">
-                  <thead style={{ backgroundColor: "#292930" }}>
+                <Table variant="secondary">
+                  <thead style={{ backgroundColor: "rgba(0, 0, 0, .17)" }}>
                     <tr
                       style={{
-                        color: "rgba(255, 255, 255, .87)",
+                        color: "rgba(255, 255, 255, .8)",
                         textAlign: "center",
                       }}
                     >
@@ -214,10 +218,10 @@ const Protege = (props: Props) => {
                       return (
                         <tr
                           style={{
-                            backgroundColor: "#292930",
+                            backgroundColor: "#f5f5f5",
                             borderBottom: "none",
                             textAlign: "center",
-                            color: "rgba(255, 255, 255, 0.6)",
+                            color: "rgba(0, 0, 0, 0.6)",
                           }}
                         >
                           <td style={{ width: "25%" }}>

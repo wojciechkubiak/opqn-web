@@ -107,7 +107,7 @@ const Patron = (props: Props) => {
       )}
       {
         showSignin && (
-            <SignProtege hide={hideSigninHandler}/>
+            <SignProtege loadedHandler={setLoaded} hide={hideSigninHandler}/>
         )
       }
     </div>

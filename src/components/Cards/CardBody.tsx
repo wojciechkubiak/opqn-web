@@ -30,7 +30,6 @@ const CardBody = (props: Props) => {
     const token = localStorage.getItem("token");
 
     const getData = () => {
-
         fetch(`https://opqn-api.herokuapp.com/last-protege-exam/${props.id}`, {
             method: "GET",
             headers: {
@@ -47,7 +46,7 @@ const CardBody = (props: Props) => {
         setTimeout(() => {
             props.loadedHandler(true);
             setLoaded(true);
-        }, 500)
+        }, 1500)
     };
 
     const removeFromGroup = (): void => {

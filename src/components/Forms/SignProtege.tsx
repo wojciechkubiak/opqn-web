@@ -4,7 +4,8 @@ import "react-phone-number-input/style.css";
 import PhoneInput from "react-phone-number-input";
 
 interface Props {
-    hide(): void
+    hide(): void,
+    loadedHandler(loaded: boolean): void
 }
 
 const RegisterProtege = (props: Props) => {
@@ -30,6 +31,10 @@ const RegisterProtege = (props: Props) => {
             if(data.status[0]) {
                 console.log("Success")
                 props.hide();
+
+                setTimeout(() => {
+                    props.loadedHandler(false);
+                }, 500)
             } else {
                 alert("Użytkownik lub przypisany, bądź wprowadzono zły numer telefonu");
                 setSignin(false);
