@@ -26,7 +26,7 @@ At this moment application is hosted on the website [opqn.netlify.app](https://o
 ### `npm install`
 
 Installs all dependencies needed to run Opiekun app. <br />In case of outdated dependencies, try to run `npm audit fix`. <br />I'm trying to fix such things as fast as possible, but sometimes it just takes a while. 
-<br />Most of times app is going to work even after error messages calling to use `audit` option <br />(not the ones that say you couldn't install dependencies - in case of such errors, check your internet connection). <br /><b>Do not pass any important data into forms.</b>
+<br />Most of times app is going to work even after error messages calling to use `audit` option <br />(not the ones that say you couldn't install dependencies - in case of such errors, check your internet connection). 
 
 ### `npm start`
 
