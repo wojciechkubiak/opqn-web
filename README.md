@@ -18,7 +18,7 @@
 * HTML
 * SASS
 
-## What app is about
+## What this app is about
 The main assumption of the application was to implement nice looking diet app, that allows supervisors to control proteges current health data with full-fledged authentication which prevents unwanted users from reading someones data.
 
 ## How can I install this app
