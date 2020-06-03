@@ -18,6 +18,28 @@
 * HTML
 * SASS
 
+## Live
+<p align="center">
+  <figure>
+    <img src="https://github.com/wojciechkubiak/opqn-web/blob/master/live1.png?raw=true"/>
+    <figcaption>Login screen</figcaption>
+  </figure>
+</p>
+
+<p align="center">
+  <figure>
+    <img src="https://github.com/wojciechkubiak/opqn-web/blob/master/live2.png?raw=true"/>
+    <figcaption>Login screen</figcaption>
+  </figure>
+</p>
+
+<p align="center">
+  <figure>
+    <img src="https://github.com/wojciechkubiak/opqn-web/blob/master/live3.png?raw=true"/>
+    <figcaption>Login screen</figcaption>
+  </figure>
+</p>
+
 ## What this app is about
 The main characteristic of the app is simplicity. There are two types of accounts, proteges and supervisors. On the side of the protege, there is one form including weight, glucose and pressure. After submit of data, data is send to the supervisor and protege job is done untill next day. On the side of supervisor, there is list of proteges included in his group and their latest health informations.
 
