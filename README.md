@@ -18,30 +18,36 @@
 * HTML
 * SASS
 
-## Live
-<p align="center">
-  <figure>
-    <img src="https://github.com/wojciechkubiak/opqn-web/blob/master/live1.png?raw=true"/>
-    <figcaption>Login screen</figcaption>
-  </figure>
-</p>
-
-<p align="center">
-  <figure>
-    <img src="https://github.com/wojciechkubiak/opqn-web/blob/master/live2.png?raw=true"/>
-    <figcaption>Login screen</figcaption>
-  </figure>
-</p>
-
-<p align="center">
-  <figure>
-    <img src="https://github.com/wojciechkubiak/opqn-web/blob/master/live3.png?raw=true"/>
-    <figcaption>Login screen</figcaption>
-  </figure>
-</p>
-
 ## What this app is about
 The main characteristic of the app is simplicity. There are two types of accounts, proteges and supervisors. On the side of the protege, there is one form including weight, glucose and pressure. After submit of data, data is send to the supervisor and protege job is done untill next day. On the side of supervisor, there is list of proteges included in his group and their latest health informations.
+
+## Live
+The first thing that shows up to the visitor is the login screen. From this level it is possible to create a user account of the selected type and to log in.
+<br />
+
+<p align="center">
+ <img src="https://github.com/wojciechkubiak/opqn-web/blob/master/live1.png?raw=true"/>
+</p>
+<br />
+Based on the account type, two types of screen can be shown to the user.
+<br />
+
+* Supervisor - it allows the analysis of data of proteges, including their contact info. The supervisor has the ability to add new proteges to his group (those who are not already signed) and to remove them.
+
+<br />
+
+<p align="center">
+  <img src="https://github.com/wojciechkubiak/opqn-web/blob/master/live2.png?raw=true"/>
+</p>
+<br />
+
+* Protege - Allows you to enter data (once a day), later analyzed by a supervisor. The main idea is "enter your data, come back tomorrow".
+
+<br />
+
+<p align="center">
+ <img src="https://github.com/wojciechkubiak/opqn-web/blob/master/live3.png?raw=true"/>
+</p>
 
 ## How can I install this app
 At this moment application is hosted on the website [opqn.netlify.app](https://opqn.netlify.app) website, but in case you want to use it locally, all you have to do is to install current LTS version of [NodeJS](https://nodejs.org/en/) and pass into your terminal (inside app directory) two commends:
@@ -58,6 +64,10 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 The page will reload if you make edits.<br />
 You will also see any lint errors in the console.
+
+## What's next
+* ### Graphs for every user, for weight, pressure and glucose.
+* ### Option to sign out from patron, from protege site.
 
 ## More about ReactJS
 
