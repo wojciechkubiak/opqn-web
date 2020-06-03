@@ -19,7 +19,7 @@
 * SASS
 
 ## What this app is about
-The main assumption of the application was to implement nice looking diet app, that allows supervisors to control proteges current health data with full-fledged authentication which prevents unwanted users from reading someones data.
+The main characteristic of the app is simplicity. There are two types of accounts, proteges and supervisors. On the side of the protege, there is one form including weight, glucose and pressure. After submit of data, data is send to the supervisor and protege job is done untill next day. On the side of supervisor, there is list of proteges included in his group and their latest health informations.
 
 ## How can I install this app
 At this moment application is hosted on the website [opqn.netlify.app](https://opqn.netlify.app) website, but in case you want to use it locally, all you have to do is to install current LTS version of [NodeJS](https://nodejs.org/en/) and pass into your terminal (inside app directory) two commends:
