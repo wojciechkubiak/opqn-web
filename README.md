@@ -66,8 +66,8 @@ The page will reload if you make edits.<br />
 You will also see any lint errors in the console.
 
 ## What's next
-* ### Graphs for every user, for weight, pressure and glucose.
-* ### Option to sign out from patron, from protege site.
+* Graphs for every user, for weight, pressure and glucose.
+* Option to sign out from patron, from protege side.
 
 ## More about ReactJS
 
