@@ -14,7 +14,7 @@
 
 
 ## Technologies used
-* ReactJS (React Hooks)
+* React + TypeScript (React Hooks)
 * HTML
 * SASS
 
