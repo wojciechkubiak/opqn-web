@@ -30,6 +30,7 @@ The first thing that shows up to the visitor is the login screen. From this leve
 </p>
 <br />
 Based on the account type, two types of screen can be shown to the user.
+
 <br />
 
 * Supervisor - it allows the analysis of data of proteges, including their contact info. The supervisor has the ability to add new proteges to his group (those who are not already signed) and to remove them.
@@ -49,6 +50,10 @@ Based on the account type, two types of screen can be shown to the user.
  <img src="https://github.com/wojciechkubiak/opqn-web/blob/master/live3.png?raw=true"/>
 </p>
 
+## Soon
+* Graphs for every user, for weight, pressure and glucose.
+* Option to sign out from patron, from protege side.
+
 ## How can I install this app
 At this moment application is hosted on the website [opqn.netlify.app](https://opqn.netlify.app) website, but in case you want to use it locally, all you have to do is to install current LTS version of [NodeJS](https://nodejs.org/en/) and pass into your terminal (inside app directory) two commends:
 
@@ -65,9 +70,6 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 The page will reload if you make edits.<br />
 You will also see any lint errors in the console.
 
-## What's next
-* Graphs for every user, for weight, pressure and glucose.
-* Option to sign out from patron, from protege side.
 
 ## More about ReactJS
 
