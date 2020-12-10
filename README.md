@@ -12,6 +12,10 @@
   <img src="https://img.shields.io/badge/typescript-3.8.3-informational"/>
 </p>
 
+## Other parts
+[API](https://github.com/wojciechkubiak/opqn-api)
+
+[Mobile](https://github.com/wojciechkubiak/opqn-mobile)
 
 ## Technologies used
 * React + TypeScript (React Hooks)
